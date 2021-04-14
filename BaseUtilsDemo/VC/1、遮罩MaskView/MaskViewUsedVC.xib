@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MaskViewUsedVC" customModule="BaseUtilsDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="chooseView" destination="3L0-kr-Ycn" id="oWH-vm-U0P"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Agn-lg-dhC">
+                    <rect key="frame" x="97" y="346" width="220" height="44"/>
+                    <color key="backgroundColor" red="0.47843137250000001" green="0.2666666667" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="220" id="9R1-nM-zFy"/>
+                        <constraint firstAttribute="height" constant="44" id="FOX-JK-dam"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <state key="normal" title="中间弹出View">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="alertViewAction:" destination="-1" eventType="touchUpInside" id="nk1-DG-nz6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMt-31-ZaJ">
+                    <rect key="frame" x="97" y="434" width="220" height="44"/>
+                    <color key="backgroundColor" red="0.47843137250000001" green="0.2666666667" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="SEb-Nh-ukg"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                    <state key="normal" title="下面弹出View">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="alertViewAction:" destination="-1" eventType="touchUpInside" id="q6e-ra-gTY"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="pMt-31-ZaJ" firstAttribute="width" secondItem="Agn-lg-dhC" secondAttribute="width" id="9Mn-LI-36X"/>
+                <constraint firstItem="Agn-lg-dhC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="CmI-oU-zSl"/>
+                <constraint firstItem="pMt-31-ZaJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="idf-2O-eAZ"/>
+                <constraint firstItem="Agn-lg-dhC" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-80" id="pgy-TO-PUv"/>
+                <constraint firstItem="pMt-31-ZaJ" firstAttribute="top" secondItem="Agn-lg-dhC" secondAttribute="bottom" constant="44" id="qpo-wv-QGk"/>
+            </constraints>
+            <point key="canvasLocation" x="24.637681159420293" y="104.46428571428571"/>
+        </view>
+        <view contentMode="scaleToFill" id="3L0-kr-Ycn">
+            <rect key="frame" x="0.0" y="0.0" width="226" height="157"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="eSh-wP-cTP">
+                    <rect key="frame" x="0.0" y="0.0" width="226" height="157"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OA2-XN-XEm">
+                            <rect key="frame" x="0.0" y="0.0" width="226" height="52.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <state key="normal" title="背景变红色">
+                                <color key="titleColor" red="0.76078431372549016" green="0.32941176470588235" blue="0.31764705882352939" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <connections>
+                                <action selector="changeColorAction:" destination="-1" eventType="touchUpInside" id="U8U-7H-XuL"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Pq-IE-IZA">
+                            <rect key="frame" x="0.0" y="52.5" width="226" height="52"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <state key="normal" title="背景变蓝色">
+                                <color key="titleColor" red="0.27058823529411763" green="0.50196078431372548" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <connections>
+                                <action selector="changeColorAction:" destination="-1" eventType="touchUpInside" id="LQW-oz-mQt"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lm5-G4-RfM">
+                            <rect key="frame" x="0.0" y="104.5" width="226" height="52.5"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <state key="normal" title="背景变粉色">
+                                <color key="titleColor" red="0.98176640272140503" green="0.67824584820532485" blue="0.8383511187254501" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </state>
+                            <connections>
+                                <action selector="changeColorAction:" destination="-1" eventType="touchUpInside" id="nXa-sS-pBm"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="cAr-WG-RIw"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="eSh-wP-cTP" firstAttribute="leading" secondItem="cAr-WG-RIw" secondAttribute="leading" id="ARs-XC-4jG"/>
+                <constraint firstItem="cAr-WG-RIw" firstAttribute="trailing" secondItem="eSh-wP-cTP" secondAttribute="trailing" id="m4R-pD-wMW"/>
+                <constraint firstItem="eSh-wP-cTP" firstAttribute="top" secondItem="3L0-kr-Ycn" secondAttribute="top" id="xLg-UT-BRu"/>
+                <constraint firstAttribute="bottom" secondItem="eSh-wP-cTP" secondAttribute="bottom" id="zR5-aC-krs"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="8"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="586.95652173913049" y="87.388392857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

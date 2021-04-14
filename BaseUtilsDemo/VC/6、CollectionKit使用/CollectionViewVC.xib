@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CollectionViewVC" customModule="BaseUtilsDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mfc-pI-gEe">
+                    <rect key="frame" x="20" y="726" width="80" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="L4c-qc-NkK"/>
+                        <constraint firstAttribute="height" constant="44" id="TQe-rN-GwR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="添加">
+                        <color key="titleColor" red="0.87833166122436523" green="0.40530575929359997" blue="0.38421408877243152" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addAction" destination="-1" eventType="touchUpInside" id="5IU-se-rjP"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HcT-tD-Rma">
+                    <rect key="frame" x="125" y="726" width="80" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="删除">
+                        <color key="titleColor" red="0.87833166119999995" green="0.40530575930000001" blue="0.38421408880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="deleteAction" destination="-1" eventType="touchUpInside" id="Igu-Dd-jRc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xYA-On-3EV">
+                    <rect key="frame" x="230" y="726" width="159" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="animator">
+                        <color key="titleColor" red="0.87833166119999995" green="0.40530575930000001" blue="0.38421408880000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="changeAnimator:" destination="-1" eventType="touchUpInside" id="gie-IE-u0E"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="xYA-On-3EV" firstAttribute="leading" secondItem="HcT-tD-Rma" secondAttribute="trailing" constant="25" id="3TW-tY-q9i"/>
+                <constraint firstItem="HcT-tD-Rma" firstAttribute="top" secondItem="mfc-pI-gEe" secondAttribute="top" id="BH1-n4-RAO"/>
+                <constraint firstItem="HcT-tD-Rma" firstAttribute="width" secondItem="mfc-pI-gEe" secondAttribute="width" id="Qbk-tQ-UcL"/>
+                <constraint firstAttribute="bottom" secondItem="mfc-pI-gEe" secondAttribute="bottom" constant="38" id="SdZ-4d-061"/>
+                <constraint firstItem="HcT-tD-Rma" firstAttribute="leading" secondItem="mfc-pI-gEe" secondAttribute="trailing" constant="25" id="TqP-ET-fio"/>
+                <constraint firstAttribute="trailing" secondItem="xYA-On-3EV" secondAttribute="trailing" constant="25" id="Tzp-EK-WEu"/>
+                <constraint firstItem="xYA-On-3EV" firstAttribute="top" secondItem="HcT-tD-Rma" secondAttribute="top" id="ZgV-hK-phS"/>
+                <constraint firstItem="HcT-tD-Rma" firstAttribute="bottom" secondItem="mfc-pI-gEe" secondAttribute="bottom" id="ehQ-mr-CWk"/>
+                <constraint firstItem="mfc-pI-gEe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="jQp-3W-9Og"/>
+                <constraint firstItem="xYA-On-3EV" firstAttribute="bottom" secondItem="HcT-tD-Rma" secondAttribute="bottom" id="s9g-BB-VwM"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="24.637681159420293" y="93.75"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

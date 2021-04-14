@@ -1,0 +1,64 @@
+PODS:
+  - Alamofire (4.8.1)
+  - CLImagePickerTool (3.0.2)
+  - HandyJSON (5.0.0)
+  - Hero (1.4.0)
+  - IQKeyboardManagerSwift (6.2.0)
+  - Kingfisher (4.10.1)
+  - MJRefresh (3.1.15.7)
+  - NVActivityIndicatorView (4.6.1):
+    - NVActivityIndicatorView/Presenter (= 4.6.1)
+  - NVActivityIndicatorView/Presenter (4.6.1)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+  - SwiftyUserDefaults (3.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - CLImagePickerTool
+  - HandyJSON (from `https://github.com/Baymax0/HandyJSON.git`)
+  - Hero
+  - IQKeyboardManagerSwift
+  - Kingfisher
+  - MJRefresh
+  - NVActivityIndicatorView
+  - SQLite.swift
+  - SwiftyUserDefaults
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - CLImagePickerTool
+    - Hero
+    - IQKeyboardManagerSwift
+    - Kingfisher
+    - MJRefresh
+    - NVActivityIndicatorView
+    - SQLite.swift
+    - SwiftyUserDefaults
+
+EXTERNAL SOURCES:
+  HandyJSON:
+    :git: https://github.com/Baymax0/HandyJSON.git
+
+CHECKOUT OPTIONS:
+  HandyJSON:
+    :commit: 94e2df8932cceb15926eb9c66558b78935d8183e
+    :git: https://github.com/Baymax0/HandyJSON.git
+
+SPEC CHECKSUMS:
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  CLImagePickerTool: b29271f764fb0d52395d09447c78967cfc6f26f8
+  HandyJSON: 992f2d661716d6a91de82d0056927bc7813b5770
+  Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  Kingfisher: c148cd7b47ebde9989f6bc7c27dcaa79d81279a0
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+  SwiftyUserDefaults: 3d273b1739b68ada3145dc754a70ec775bc5c8be
+
+PODFILE CHECKSUM: 8e79ab135cb2749480d4c360a17fb6f0bec75a27
+
+COCOAPODS: 1.6.1

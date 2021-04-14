@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Uvz-bD-6uE">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Base NavigationVC-->
+        <scene sceneID="LfC-bM-t3w">
+            <objects>
+                <navigationController id="Uvz-bD-6uE" customClass="BaseNavigationVC" customModule="BaseUtilsDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zTB-dw-e3u">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="6X3-cB-YiG" kind="relationship" relationship="rootViewController" id="h4H-vE-z9R"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O22-Vv-1t6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-530" y="86"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8Bn-OP-Kp3">
+            <objects>
+                <viewController id="6X3-cB-YiG" customClass="ViewController" customModule="BaseUtilsDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7e4-nu-T9c"/>
+                        <viewControllerLayoutGuide type="bottom" id="alr-o0-y0f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WbT-Vn-xkl">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0GK-0P-Xzy">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="88"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="常用功能和效果的Demo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IdF-Zb-fhz">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="kQ6-Ut-Q2A"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.50598878280127879" green="0.62418806018838169" blue="0.91906255483627319" alpha="0.7903116861979167" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="IdF-Zb-fhz" secondAttribute="trailing" id="89W-Hz-q27"/>
+                                    <constraint firstItem="IdF-Zb-fhz" firstAttribute="leading" secondItem="0GK-0P-Xzy" secondAttribute="leading" id="9eE-sO-40f"/>
+                                    <constraint firstAttribute="bottom" secondItem="IdF-Zb-fhz" secondAttribute="bottom" id="P9p-0G-di9"/>
+                                    <constraint firstAttribute="height" constant="88" id="nN8-UD-jfA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0GK-0P-Xzy" secondAttribute="trailing" id="BPv-G5-N54"/>
+                            <constraint firstItem="0GK-0P-Xzy" firstAttribute="leading" secondItem="WbT-Vn-xkl" secondAttribute="leading" id="JzE-OZ-SkF"/>
+                            <constraint firstItem="0GK-0P-Xzy" firstAttribute="top" secondItem="WbT-Vn-xkl" secondAttribute="top" id="z4P-4R-wL3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pEe-RW-ofj"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Owp-Wd-vEu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="318.84057971014494" y="85.714285714285708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
