@@ -6,7 +6,7 @@
 //  Copyright © 2017 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public class StickyLayout: WrapperLayout {
   public var isStickyFn: (Int) -> Bool

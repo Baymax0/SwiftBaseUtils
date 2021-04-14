@@ -6,9 +6,6 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
-import UIKit
-import Foundation
-
 import SwiftyUserDefaults
 
 class Utils: NSObject {

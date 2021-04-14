@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 open class FadeAnimator: SimpleAnimator {
   open var alpha: CGFloat = 0

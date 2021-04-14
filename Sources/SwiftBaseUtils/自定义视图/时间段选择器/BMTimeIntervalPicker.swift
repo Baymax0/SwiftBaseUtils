@@ -6,7 +6,7 @@
 //  Copyright © 2020 baymax. All rights reserved.
 //
 
-import UIKit
+
 
 ///   必须全局持有 否则点击事件
 ///   pick = BMTimeIntervalPicker.share()

@@ -6,7 +6,7 @@
 //  Copyright © 2020 baymax. All rights reserved.
 //
 
-import UIKit
+
 
 extension UIView{
     //在协议里面不允许定义class 只能定义static

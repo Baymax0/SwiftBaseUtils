@@ -6,7 +6,7 @@
 //  Copyright © 2017年 周玉. All rights reserved.
 //
 
-import UIKit
+
 
 //图片的模式
 enum contentMode {

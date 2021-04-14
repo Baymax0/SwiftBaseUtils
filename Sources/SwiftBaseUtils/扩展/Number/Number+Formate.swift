@@ -6,7 +6,7 @@
 //  Copyright © 2020 yimi. All rights reserved.
 //
 
-import UIKit
+
 
 enum NumberFormateType:String{
     // 精确位数

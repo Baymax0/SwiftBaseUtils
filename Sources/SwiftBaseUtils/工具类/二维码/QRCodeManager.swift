@@ -6,8 +6,6 @@
 //  Copyright © 2020 baymax. All rights reserved.
 //
 
-import Foundation
-import UIKit
 
 class QRCodeManager: NSObject {
 

@@ -6,8 +6,7 @@
 //  Copyright © 2019 yimi. All rights reserved.
 //
 
-import UIKit
-import NVActivityIndicatorView
+
 // 指示器状态
 enum IndicatorViewState {
     case none    //

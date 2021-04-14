@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public protocol ItemProvider: Provider {
   func view(at: Int) -> UIView

@@ -6,7 +6,7 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
-import UIKit
+
 
 class BMScaleView: UIView,UIScrollViewDelegate{
     

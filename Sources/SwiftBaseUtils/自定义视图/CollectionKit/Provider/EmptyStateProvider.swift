@@ -6,7 +6,7 @@
 //  Copyright © 2017 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public class EmptyStateProvider: ComposedProvider {
   open var emptyStateView: UIView?

@@ -6,7 +6,7 @@
 //  Copyright © 2017 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 open class ViewSource<Data, View: UIView> {
   public private(set) lazy var reuseManager = CollectionReuseViewManager()

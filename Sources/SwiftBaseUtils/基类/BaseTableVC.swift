@@ -6,11 +6,7 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
-import UIKit
-import NVActivityIndicatorView
-import MJRefresh
-import HandyJSON
-import Alamofire
+
 
 class ListModel: HandyJSON {
     required init() {}

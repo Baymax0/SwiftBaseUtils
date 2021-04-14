@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public class ComposedViewSource<Data>: ViewSource<Data, UIView> {
   public var viewSourceSelector: (Data) -> AnyViewSource

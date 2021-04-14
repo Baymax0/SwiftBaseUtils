@@ -6,7 +6,7 @@
 //  Copyright © 2018 zbkj. All rights reserved.
 //
 
-import UIKit
+
 import AVFoundation
 
 class ScanVC: BaseVC {

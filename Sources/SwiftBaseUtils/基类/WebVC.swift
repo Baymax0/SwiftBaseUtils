@@ -17,11 +17,7 @@ class WebVC: BaseVC ,WKNavigationDelegate{
     
     var barItemColor:UIColor?
 
-    var webView:WKWebView = {
-        let web = WKWebView( frame: CGRect(x:0, y:0, width:KScreenWidth, height:KHeightInNav))
-        web.backgroundColor = .KBGGray
-        return web
-    }()
+    var webView:WKWebView!
 
     var progressView:UIProgressView = {
         let progress = UIProgressView(frame: CGRect(x:0, y:0, width:KScreenWidth, height:2))
@@ -34,79 +30,19 @@ class WebVC: BaseVC ,WKNavigationDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideNav = false
-        
-        self.view.addSubview(webView)
-        
         self.initUI()
         
-        webView.navigationDelegate = self
-//        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
-        
-        if urlString != nil{
-            var newStr = urlString!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
-            if !urlString!.contains(".html"){
-                if cache[.sessionId] != nil{
-                    let userId = cache[.userId]!
-                    let sessionId = cache[.sessionId]!
-                    if newStr.contains("?"){
-                        newStr = newStr + "&" + "userId=" + userId + "&sessionId=" + sessionId
-                    }else{
-                        newStr = newStr + "?" + "userId=" + userId + "&sessionId=" + sessionId
-                    }
-                    if oemInstitutionNo != nil{
-                        newStr = newStr + "&oemInstitutionNo=" + oemInstitutionNo!
-                    }
-                }else{
-                    if oemInstitutionNo != nil{
-                        if newStr.contains("?"){
-                            newStr = newStr + "&oemInstitutionNo=" + oemInstitutionNo!
-                        }else{
-                            newStr = newStr + "?oemInstitutionNo=" + oemInstitutionNo!
-                        }
-                    }
-                }
-            }
-            if let url = URL(string: newStr){
-                webView.load(URLRequest(url: url))
-            }
-        }else{
-            self.requestHtml()
-        }
-        
+        let url = URL(string: urlString!)
+        webView.load(URLRequest(url: url!))
     }
-    
-    // 子类里实现
-    func requestHtml(){
-        // 模版
-//        let userId = cache[.userId]!
-//        let sessionId = cache[.sessionId]!
-//        var param = [String : Any]()
-//        param["userId"] = userId
-//        param["sessionId"] = sessionId
-//        param["oemInstitutionNo"] = oemInstitutionNo
-//
-//        let url = BMApiSet.help_Web.urlWithHost
-//        network[.help_Web].requestJson(params: param) { (html) in
-//            if html != nil{
-//                self.webView.loadHTMLString(html!, baseURL: URL(string: url))
-//            }
-//        }
-    }
-    
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        if self.htmlContent != nil{
-//            self.webView.loadHTMLString(self.htmlContent!, baseURL: nil)
-//        }else{
-//            let newStr = urlString!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
-//            if let url = URL(string: newStr!){
-//                webView.load(URLRequest(url: url))
-//            }
-//        }
-//    }
     
     func initUI() {
+        webView = WKWebView( frame: CGRect(x:0, y:0, width:KScreenWidth, height:KHeightInNav))
+        webView.backgroundColor = .KBGGray
+        webView.navigationDelegate = self
+//        webView.addObserver(self, forKeyPath: "estimatedProgress", options: .new, context: nil)
+        self.view.addSubview(webView)
+        
         let naviView = UIView(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: KNaviBarH))
         naviView.backgroundColor = .white
         
@@ -131,9 +67,6 @@ class WebVC: BaseVC ,WKNavigationDelegate{
             
             self.view.addSubview(naviView)
         }
-        
-//        progressView.setProgress(0.05, animated:true)
-//        self.view.addSubview(progressView)
     }
 
     @objc func myBack(_ btn:UIButton){

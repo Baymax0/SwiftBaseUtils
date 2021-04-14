@@ -6,11 +6,6 @@
 //  Copyright © 2020 蔡林海. All rights reserved.
 //
 
-import UIKit
-import NVActivityIndicatorView
-import MJRefresh
-import HandyJSON
-import Alamofire
 
 class BaseCollVC: BaseVC {
     

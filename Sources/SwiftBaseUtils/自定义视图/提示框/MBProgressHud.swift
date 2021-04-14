@@ -6,8 +6,6 @@
 //  Copyright © 2019 yimi. All rights reserved.
 //
 
-import Foundation
-import UIKit
 
 //MARK: - Extension UIView
 extension UIView {

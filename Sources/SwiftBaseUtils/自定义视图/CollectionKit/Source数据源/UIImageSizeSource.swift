@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 open class UIImageSizeSource: SizeSource<UIImage> {
   open override func size(at index: Int, data: UIImage, collectionSize: CGSize) -> CGSize {

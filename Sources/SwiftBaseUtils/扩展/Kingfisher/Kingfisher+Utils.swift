@@ -6,8 +6,8 @@
 //  Copyright © 2019 yimi. All rights reserved.
 //
 
-import Foundation
-import UIKit
+
+
 
 extension Optional where Wrapped == String{
     var resource:ImageResource?{

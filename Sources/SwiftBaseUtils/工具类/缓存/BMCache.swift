@@ -6,9 +6,6 @@
 //  Copyright © 2019 yimi. All rights reserved.
 //
 
-import Foundation
-import HandyJSON
-
 ///     示例：
 ///     // 支持基础数据类型，自定义模型<:HandyJSON>,数组，字典
 ///

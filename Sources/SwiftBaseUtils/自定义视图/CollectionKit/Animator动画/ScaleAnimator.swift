@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 open class ScaleAnimator: FadeAnimator {
   open var scale: CGFloat = 0.5

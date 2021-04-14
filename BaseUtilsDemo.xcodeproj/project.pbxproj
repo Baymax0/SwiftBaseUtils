@@ -12,7 +12,6 @@
 		10423D492626D49900EEB297 /* Hud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423CB92626D49800EEB297 /* Hud.swift */; };
 		10423D4A2626D49900EEB297 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423CBA2626D49800EEB297 /* AlertView.swift */; };
 		10423D4B2626D49900EEB297 /* MBProgressHud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423CBB2626D49800EEB297 /* MBProgressHud.swift */; };
-		10423D4C2626D49900EEB297 /* JXPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423CBE2626D49800EEB297 /* JXPopupView.swift */; };
 		10423D4D2626D49900EEB297 /* BMCityPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423CC12626D49800EEB297 /* BMCityPicker.swift */; };
 		10423D4E2626D49900EEB297 /* city_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 10423CC32626D49800EEB297 /* city_db.sqlite */; };
 		10423D4F2626D49900EEB297 /* CityDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423CC42626D49800EEB297 /* CityDBManager.swift */; };
@@ -109,12 +108,18 @@
 		10423DAA2626D49900EEB297 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D392626D49900EEB297 /* BaseCell.swift */; };
 		10423DAB2626D49900EEB297 /* ScanVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D3A2626D49900EEB297 /* ScanVC.swift */; };
 		10423DAC2626D49900EEB297 /* BaseNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D3B2626D49900EEB297 /* BaseNavigationVC.swift */; };
-		10423DAD2626D49900EEB297 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D3E2626D49900EEB297 /* Network.swift */; };
-		10423DAE2626D49900EEB297 /* ZBJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D3F2626D49900EEB297 /* ZBJsonModel.swift */; };
+		10423DAD2626D49900EEB297 /* BMNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D3E2626D49900EEB297 /* BMNetwork.swift */; };
 		10423DAF2626D49900EEB297 /* ConstantsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D412626D49900EEB297 /* ConstantsLayout.swift */; };
 		10423DB02626D49900EEB297 /* BMCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D432626D49900EEB297 /* BMCache.swift */; };
 		10423DB12626D49900EEB297 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D442626D49900EEB297 /* Utils.swift */; };
 		10423DB22626D49900EEB297 /* QRCodeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423D462626D49900EEB297 /* QRCodeManager.swift */; };
+		10423DB82626EA9C00EEB297 /* BMApiSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423DB72626EA9C00EEB297 /* BMApiSet.swift */; };
+		10423DBA2626EAFC00EEB297 /* BMRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423DB92626EAFC00EEB297 /* BMRequester.swift */; };
+		10423DBD2626F77B00EEB297 /* ZBJsonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423DBC2626F77B00EEB297 /* ZBJsonModel.swift */; };
+		10423DCB2626F9CA00EEB297 /* ZBJsonArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423DCA2626F9CA00EEB297 /* ZBJsonArrayModel.swift */; };
+		10423DCD2626F9D400EEB297 /* ZBJsonInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423DCC2626F9D400EEB297 /* ZBJsonInt.swift */; };
+		10423DCF2626F9DC00EEB297 /* ZBJsonString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423DCE2626F9DC00EEB297 /* ZBJsonString.swift */; };
+		10423DD12626F9EC00EEB297 /* ZBJsonDic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10423DD02626F9EC00EEB297 /* ZBJsonDic.swift */; };
 		2D328849234ED13800BAFD37 /* DemoVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D328847234ED13800BAFD37 /* DemoVC1.swift */; };
 		2D32884A234ED13800BAFD37 /* DemoVC1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2D328848234ED13800BAFD37 /* DemoVC1.xib */; };
 		2D32884C234ED3EF00BAFD37 /* temp.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D32884B234ED3EF00BAFD37 /* temp.png */; };
@@ -162,7 +167,6 @@
 		10423CB92626D49800EEB297 /* Hud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hud.swift; sourceTree = "<group>"; };
 		10423CBA2626D49800EEB297 /* AlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		10423CBB2626D49800EEB297 /* MBProgressHud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MBProgressHud.swift; sourceTree = "<group>"; };
-		10423CBE2626D49800EEB297 /* JXPopupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JXPopupView.swift; sourceTree = "<group>"; };
 		10423CC12626D49800EEB297 /* BMCityPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCityPicker.swift; sourceTree = "<group>"; };
 		10423CC32626D49800EEB297 /* city_db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = city_db.sqlite; sourceTree = "<group>"; };
 		10423CC42626D49800EEB297 /* CityDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityDBManager.swift; sourceTree = "<group>"; };
@@ -259,12 +263,18 @@
 		10423D392626D49900EEB297 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		10423D3A2626D49900EEB297 /* ScanVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanVC.swift; sourceTree = "<group>"; };
 		10423D3B2626D49900EEB297 /* BaseNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseNavigationVC.swift; sourceTree = "<group>"; };
-		10423D3E2626D49900EEB297 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
-		10423D3F2626D49900EEB297 /* ZBJsonModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZBJsonModel.swift; sourceTree = "<group>"; };
+		10423D3E2626D49900EEB297 /* BMNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMNetwork.swift; sourceTree = "<group>"; };
 		10423D412626D49900EEB297 /* ConstantsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstantsLayout.swift; sourceTree = "<group>"; };
 		10423D432626D49900EEB297 /* BMCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BMCache.swift; sourceTree = "<group>"; };
 		10423D442626D49900EEB297 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		10423D462626D49900EEB297 /* QRCodeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeManager.swift; sourceTree = "<group>"; };
+		10423DB72626EA9C00EEB297 /* BMApiSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMApiSet.swift; sourceTree = "<group>"; };
+		10423DB92626EAFC00EEB297 /* BMRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMRequester.swift; sourceTree = "<group>"; };
+		10423DBC2626F77B00EEB297 /* ZBJsonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZBJsonModel.swift; sourceTree = "<group>"; };
+		10423DCA2626F9CA00EEB297 /* ZBJsonArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZBJsonArrayModel.swift; sourceTree = "<group>"; };
+		10423DCC2626F9D400EEB297 /* ZBJsonInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZBJsonInt.swift; sourceTree = "<group>"; };
+		10423DCE2626F9DC00EEB297 /* ZBJsonString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZBJsonString.swift; sourceTree = "<group>"; };
+		10423DD02626F9EC00EEB297 /* ZBJsonDic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZBJsonDic.swift; sourceTree = "<group>"; };
 		2D328847234ED13800BAFD37 /* DemoVC1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoVC1.swift; sourceTree = "<group>"; };
 		2D328848234ED13800BAFD37 /* DemoVC1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoVC1.xib; sourceTree = "<group>"; };
 		2D32884B234ED3EF00BAFD37 /* temp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = temp.png; sourceTree = "<group>"; };
@@ -345,7 +355,6 @@
 			children = (
 				10423CB82626D49800EEB297 /* 提示框 */,
 				10423CBC2626D49800EEB297 /* 内阴影 */,
-				10423CBD2626D49800EEB297 /* PopView */,
 				10423CBF2626D49800EEB297 /* 选择器 */,
 				10423CC92626D49800EEB297 /* 图片上传 */,
 				10423CD02626D49800EEB297 /* 加载等待 */,
@@ -374,14 +383,6 @@
 			children = (
 			);
 			path = "内阴影";
-			sourceTree = "<group>";
-		};
-		10423CBD2626D49800EEB297 /* PopView */ = {
-			isa = PBXGroup;
-			children = (
-				10423CBE2626D49800EEB297 /* JXPopupView.swift */,
-			);
-			path = PopView;
 			sourceTree = "<group>";
 		};
 		10423CBF2626D49800EEB297 /* 选择器 */ = {
@@ -716,8 +717,10 @@
 		10423D3D2626D49900EEB297 /* 请求 */ = {
 			isa = PBXGroup;
 			children = (
-				10423D3E2626D49900EEB297 /* Network.swift */,
-				10423D3F2626D49900EEB297 /* ZBJsonModel.swift */,
+				10423DBB2626F73600EEB297 /* RespModel */,
+				10423DB72626EA9C00EEB297 /* BMApiSet.swift */,
+				10423DB92626EAFC00EEB297 /* BMRequester.swift */,
+				10423D3E2626D49900EEB297 /* BMNetwork.swift */,
 			);
 			path = "请求";
 			sourceTree = "<group>";
@@ -744,6 +747,18 @@
 				10423D462626D49900EEB297 /* QRCodeManager.swift */,
 			);
 			path = "二维码";
+			sourceTree = "<group>";
+		};
+		10423DBB2626F73600EEB297 /* RespModel */ = {
+			isa = PBXGroup;
+			children = (
+				10423DBC2626F77B00EEB297 /* ZBJsonModel.swift */,
+				10423DCA2626F9CA00EEB297 /* ZBJsonArrayModel.swift */,
+				10423DCC2626F9D400EEB297 /* ZBJsonInt.swift */,
+				10423DCE2626F9DC00EEB297 /* ZBJsonString.swift */,
+				10423DD02626F9EC00EEB297 /* ZBJsonDic.swift */,
+			);
+			path = RespModel;
 			sourceTree = "<group>";
 		};
 		2D0AD6FE2303CDE4004C5C90 /* VC */ = {
@@ -1051,7 +1066,6 @@
 				10423D682626D49900EEB297 /* WaterfallLayout.swift in Sources */,
 				10423D6E2626D49900EEB297 /* EmptyCollectionProvider.swift in Sources */,
 				10423D5B2626D49900EEB297 /* Animator.swift in Sources */,
-				10423DAE2626D49900EEB297 /* ZBJsonModel.swift in Sources */,
 				10423D5C2626D49900EEB297 /* FadeAnimator.swift in Sources */,
 				9B3D04E424937AF200607F3C /* CacheKey.swift in Sources */,
 				10423D7B2626D49900EEB297 /* BasicProvider+Convenience.swift in Sources */,
@@ -1074,6 +1088,7 @@
 				10423DA72626D49900EEB297 /* BaseCollVC.swift in Sources */,
 				9B680E62258314B700AC7835 /* AnimTableVC.swift in Sources */,
 				10423D982626D49900EEB297 /* Number+Formate.swift in Sources */,
+				10423DB82626EA9C00EEB297 /* BMApiSet.swift in Sources */,
 				10423D772626D49900EEB297 /* SpaceProvider.swift in Sources */,
 				10423D732626D49900EEB297 /* ItemProvider.swift in Sources */,
 				10423DAB2626D49900EEB297 /* ScanVC.swift in Sources */,
@@ -1082,12 +1097,12 @@
 				10423D652626D49900EEB297 /* VisibleFrameInsetLayout.swift in Sources */,
 				10423D892626D49900EEB297 /* ClosureSizeSource.swift in Sources */,
 				10423D512626D49900EEB297 /* BMDatePicker.swift in Sources */,
+				10423DCF2626F9DC00EEB297 /* ZBJsonString.swift in Sources */,
 				10423D4D2626D49900EEB297 /* BMCityPicker.swift in Sources */,
 				9B9D46292595BD2B002B1A94 /* CollectionViewVC.swift in Sources */,
 				10423D482626D49900EEB297 /* BMConst.swift in Sources */,
 				10423D4B2626D49900EEB297 /* MBProgressHud.swift in Sources */,
 				10423D872626D49900EEB297 /* AnyViewSource.swift in Sources */,
-				10423D4C2626D49900EEB297 /* JXPopupView.swift in Sources */,
 				10423D492626D49900EEB297 /* Hud.swift in Sources */,
 				10423D862626D49900EEB297 /* ClosureDataSource.swift in Sources */,
 				10423D852626D49900EEB297 /* DataSource.swift in Sources */,
@@ -1099,6 +1114,8 @@
 				10423D902626D49900EEB297 /* CellFlowLayout.swift in Sources */,
 				10423D532626D49900EEB297 /* BMPicker.swift in Sources */,
 				10423DAF2626D49900EEB297 /* ConstantsLayout.swift in Sources */,
+				10423DCD2626F9D400EEB297 /* ZBJsonInt.swift in Sources */,
+				10423DBA2626EAFC00EEB297 /* BMRequester.swift in Sources */,
 				10423D562626D49900EEB297 /* MultiImgChooseView.swift in Sources */,
 				10423DA62626D49900EEB297 /* WebVC.swift in Sources */,
 				10423D802626D49900EEB297 /* AutoLayoutSizeSource.swift in Sources */,
@@ -1125,11 +1142,13 @@
 				10423D9E2626D49900EEB297 /* String+Substring.swift in Sources */,
 				10423D9F2626D49900EEB297 /* String+MD5.swift in Sources */,
 				10423D582626D49900EEB297 /* BMIndicatorView.swift in Sources */,
-				10423DAD2626D49900EEB297 /* Network.swift in Sources */,
+				10423DAD2626D49900EEB297 /* BMNetwork.swift in Sources */,
 				2D32885E234EFD7700BAFD37 /* DemoVC4.swift in Sources */,
+				10423DD12626F9EC00EEB297 /* ZBJsonDic.swift in Sources */,
 				10423D692626D49900EEB297 /* Layout.swift in Sources */,
 				10423D9A2626D49900EEB297 /* UIImage+Extension.swift in Sources */,
 				10423D722626D49900EEB297 /* SectionProvider.swift in Sources */,
+				10423DCB2626F9CA00EEB297 /* ZBJsonArrayModel.swift in Sources */,
 				10423D6C2626D49900EEB297 /* ComposedHeaderProvider+Convenience.swift in Sources */,
 				10423D7A2626D49900EEB297 /* UIScrollView+CollectionKit.swift in Sources */,
 				10423D992626D49900EEB297 /* Number+String.swift in Sources */,
@@ -1146,6 +1165,7 @@
 				10423DB22626D49900EEB297 /* QRCodeManager.swift in Sources */,
 				2D4BD7282297A13D00E80275 /* ViewController.swift in Sources */,
 				10423D8C2626D49900EEB297 /* CollectionReuseViewManager.swift in Sources */,
+				10423DBD2626F77B00EEB297 /* ZBJsonModel.swift in Sources */,
 				2DF18884230BE67C00BD4502 /* LoginVC.swift in Sources */,
 				9B4D9FB02593343E00B1E097 /* MaskViewUsedVC.swift in Sources */,
 				10423D612626D49900EEB297 /* WrapperLayout.swift in Sources */,

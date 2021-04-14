@@ -6,7 +6,7 @@
 //  Copyright © 2017 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public protocol CollectionReloadable: class {
   var collectionView: CollectionView? { get }

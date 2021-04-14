@@ -6,8 +6,8 @@
 //  Copyright © 2020 蔡林海. All rights reserved.
 //
 
-import Foundation
-import UIKit
+
+
 
 extension UIImage{
 

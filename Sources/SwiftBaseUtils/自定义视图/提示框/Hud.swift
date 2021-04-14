@@ -6,7 +6,6 @@
 //  Copyright © 2019 zhuanbangTec. All rights reserved.
 //
 
-import UIKit
 
 class Hud: NSObject {
     

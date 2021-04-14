@@ -6,8 +6,7 @@
 //  Copyright © 2018 lizhiwei. All rights reserved.
 //
 
-import UIKit
-import NVActivityIndicatorView
+
 import IQKeyboardManagerSwift
 
 // 页面离开的方式

@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public protocol AnyViewSource {
   func anyView(data: Any, index: Int) -> UIView

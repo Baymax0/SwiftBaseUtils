@@ -6,7 +6,7 @@
 //  Copyright © 2017 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 open class SpaceProvider: EmptyCollectionProvider {
   public enum SpaceSizeStrategy {

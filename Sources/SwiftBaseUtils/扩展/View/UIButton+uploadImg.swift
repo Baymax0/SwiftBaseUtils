@@ -6,8 +6,6 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
-import UIKit
-import NVActivityIndicatorView
 
 let progressTag = 98362
 

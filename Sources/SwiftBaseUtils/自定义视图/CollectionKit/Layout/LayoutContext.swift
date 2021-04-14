@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public protocol LayoutContext {
   var collectionSize: CGSize { get }

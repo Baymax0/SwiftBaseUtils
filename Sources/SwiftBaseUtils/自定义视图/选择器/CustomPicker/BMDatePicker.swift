@@ -6,7 +6,6 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
-import UIKit
 
 enum BMDatePickerMode:UInt8 {
     /// 时分秒

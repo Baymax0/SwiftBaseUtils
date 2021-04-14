@@ -6,7 +6,7 @@
 //  Copyright © 2017 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 open class SimpleLayout: Layout {
   var _contentSize: CGSize = .zero

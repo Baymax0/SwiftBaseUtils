@@ -6,7 +6,7 @@
 //  Copyright © 2017 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public class Closurelayout: SimpleLayout {
   public var frameProvider: (Int, CGSize) -> CGRect

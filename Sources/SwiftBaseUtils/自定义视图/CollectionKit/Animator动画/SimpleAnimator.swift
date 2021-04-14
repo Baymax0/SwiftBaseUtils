@@ -6,7 +6,6 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
 
 open class SimpleAnimator: Animator {
   open var animationDuration: TimeInterval = 0.3

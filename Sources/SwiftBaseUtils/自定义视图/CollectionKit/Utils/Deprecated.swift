@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 // MARK: protocols
 @available(*, deprecated, message: "v2.0 deprecated naming")

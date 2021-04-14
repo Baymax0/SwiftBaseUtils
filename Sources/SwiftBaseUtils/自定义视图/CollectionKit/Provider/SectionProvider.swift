@@ -6,7 +6,7 @@
 //  Copyright © 2018 lkzhao. All rights reserved.
 //
 
-import Foundation
+
 
 public protocol SectionProvider: Provider {
   func section(at: Int) -> Provider?

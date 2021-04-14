@@ -6,7 +6,7 @@
 //  Copyright © 2017年 周玉. All rights reserved.
 //
 
-import UIKit
+
 
 class CellFlowLayout: UICollectionViewFlowLayout {
 

@@ -6,7 +6,7 @@
 //  Copyright © 2017 lkzhao. All rights reserved.
 //
 
-import UIKit
+
 
 public enum JustifyContent {
   case start, end, center, spaceBetween, spaceAround, spaceEvenly
