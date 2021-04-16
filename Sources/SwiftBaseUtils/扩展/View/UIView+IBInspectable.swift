@@ -10,6 +10,7 @@
 
 
 extension UIView{
+    
     @IBInspectable var cornerRadius: CGFloat {
         get {
             return layer.cornerRadius
@@ -17,6 +18,20 @@ extension UIView{
         set {
             layer.cornerRadius = newValue
             layer.masksToBounds = newValue > 0
+        }
+    }
+    
+    @IBInspectable var addShadow: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+            layer.shadowColor = #colorLiteral(red: 0.703776896, green: 0.7038969398, blue: 0.7037611604, alpha: 1).cgColor
+            layer.masksToBounds = false
+            layer.shadowOpacity = 0.3
+            layer.shadowRadius = 4
+            layer.shadowOffset = CGSize(width: 2, height: 2)
         }
     }
     

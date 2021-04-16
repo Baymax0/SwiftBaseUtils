@@ -45,6 +45,12 @@ class BMIndicatorView: UIView {
         return v
     }
     
+    func setRandonLodingType(){
+        let arr:Array<NVActivityIndicatorType> = [.ballPulse, .ballGridPulse, .ballClipRotate, .squareSpin, .ballClipRotatePulse, .ballClipRotateMultiple, .ballPulseRise, .ballRotate, .cubeTransition, .ballZigZag, .ballZigZagDeflect, .ballTrianglePath, .ballScale, .lineScale, .lineScaleParty, .ballScaleMultiple, .ballPulseSync, .ballBeat, .ballDoubleBounce, .lineScalePulseOut, .lineScalePulseOutRapid, .ballScaleRipple, .ballScaleRippleMultiple, .ballSpinFadeLoader, .lineSpinFadeLoader, .triangleSkewSpin, .pacman, .ballGridBeat, .semiCircleSpin, .ballRotateChase, .orbit, .audioEqualizer, .circleStrokeSpin]
+        let index = arc4random() % UInt32(arr.count);
+        activityIndicatorView.type  = arr[Int(index)]
+    }
+    
     
     func initUI() {
         

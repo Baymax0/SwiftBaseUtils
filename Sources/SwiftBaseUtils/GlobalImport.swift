@@ -8,8 +8,6 @@
 
 // 在当前Target中倒入需要频繁import的其他 Module
 
-@_exported import Foundation
-@_exported import UIKit
 
 @_exported import HandyJSON
 @_exported import Alamofire
@@ -21,11 +19,6 @@
 @_exported import NVActivityIndicatorView
 
 
-
-
-
-
-
 /**
  *
  ***备忘录**
@@ -33,6 +26,5 @@
  谨慎使用 @_exported
  *
  */
-
 
 

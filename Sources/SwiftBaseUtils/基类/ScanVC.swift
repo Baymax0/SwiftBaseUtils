@@ -28,8 +28,9 @@ class ScanVC: BaseVC {
         v.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6044234155)
         
         let btn = UIButton(frame: CGRect(x: 0, y: KNaviBarH-44, width: 60, height: 44))
-        let img = #imageLiteral(resourceName: "fanhui").withRenderingMode(.alwaysTemplate)
+        let img = UIImage(named: "BMback_Icon")?.withRenderingMode(.alwaysTemplate)
         btn.setImage(img, for: .normal)
+        btn.tag = 99
         btn.tintColor = .white
         btn.addTarget(self, action: #selector(back), for: .touchUpInside)
         v.addSubview(btn)
@@ -44,8 +45,9 @@ class ScanVC: BaseVC {
     
     var lightBtn:UIButton = {
         let btn = UIButton(frame: CGRect(x: KScreenWidth-60, y: KNaviBarH-44, width: 60, height: 44))
-        let img = #imageLiteral(resourceName: "scan-light").withRenderingMode(.alwaysTemplate)
+        let img = UIImage(named: "scan-dark")?.withRenderingMode(.alwaysTemplate)
         btn.setImage(img, for: .normal)
+        btn.imageView?.contentMode = .scaleAspectFit
         btn.tintColor = .white
         btn.addTarget(self, action: #selector(openLight), for: .touchUpInside)
         return btn
@@ -66,13 +68,13 @@ class ScanVC: BaseVC {
     }()
     var slideBGView :UIImageView = {
         let v = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        v.image = #imageLiteral(resourceName: "scan-bg")
+        v.image = UIImage(named: "scan-slider-bg")
         v.clipsToBounds = true
         return v
     }()
     var sliderView :UIImageView = {
         let v = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        v.image = #imageLiteral(resourceName: "scan-slider")
+        v.image = UIImage(named: "scan-slider")
         return v
     }()
 

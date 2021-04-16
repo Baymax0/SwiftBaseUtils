@@ -6,6 +6,8 @@
 //  Copyright © 2019 yimi. All rights reserved.
 //
 
+import Foundation
+import UIKit
 
 //MARK: - Extension UIView
 extension UIView {
@@ -19,11 +21,11 @@ extension UIView {
 
 //MARK: - MBProgressHUDDelegate
 @objc protocol MBProgressHUDDelegate {
-    @objc optional func hudWasHidden(_ hud: MBProgressHUD)
+    @objc optional func hudWasHidden(_ hud : MBProgressHUD)
 }
 
 //MARK: - ENUM
-enum MBProgressHUDMode: Int {
+enum MBProgressHUDMode : Int {
     case indeterminate = 0
     case annularIndeterminate   //
     case determinate
@@ -33,7 +35,7 @@ enum MBProgressHUDMode: Int {
     case text
 }
 
-enum MBProgressHUDAnimation: Int {
+enum MBProgressHUDAnimation : Int {
     case fade = 0
     case zoom
     case zoomOut
@@ -41,14 +43,14 @@ enum MBProgressHUDAnimation: Int {
 }
 
 //MARK: - Global var and func
-typealias MBProgressHUDCompletionBlock = () -> Void
+typealias MBProgressHUDCompletionBlock   = () -> Void
 typealias MBProgressHUDExecutionClosures = () -> Void
 
-let kPadding: CGFloat = 4.0
-let kLabelFontSize: CGFloat = 16.0
-let kDetailsLabelFontSize: CGFloat = 12.0
+let kPadding              : CGFloat      = 4.0
+let kLabelFontSize        : CGFloat      = 16.0
+let kDetailsLabelFontSize : CGFloat      = 12.0
 
-func MB_TEXTSIZE(_ text: String?, font: UIFont) -> CGSize {
+func MB_TEXTSIZE(_ text   : String?, font   : UIFont) -> CGSize {
     guard let textTemp = text, textTemp.count > 0 else {
         return CGSize.zero
     }
@@ -71,10 +73,10 @@ class MBProgressHUD: UIView {
     fileprivate var detailsLabel: UILabel!
     fileprivate var rotationTransform: CGAffineTransform = CGAffineTransform.identity
     
-    fileprivate var indicator: UIView?
-    fileprivate var graceTimer: Timer?
-    fileprivate var minShowTimer: Timer?
-    fileprivate var showStarted: Date?
+    fileprivate var indicator    : UIView?
+    fileprivate var graceTimer   : Timer?
+    fileprivate var minShowTimer : Timer?
+    fileprivate var showStarted  : Date?
     
     var customView: UIView? {
         didSet {
