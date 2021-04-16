@@ -34,6 +34,7 @@ class ScanVC: BaseVC {
         btn.tintColor = .white
         btn.addTarget(self, action: #selector(back), for: .touchUpInside)
         v.addSubview(btn)
+        btn.bm.addConstraints([.left(0), .bottom(0), .w(60), .h(44)])
         return v
     }()
     
@@ -50,6 +51,7 @@ class ScanVC: BaseVC {
         btn.imageView?.contentMode = .scaleAspectFit
         btn.tintColor = .white
         btn.addTarget(self, action: #selector(openLight), for: .touchUpInside)
+
         return btn
     }()
 
@@ -92,8 +94,8 @@ class ScanVC: BaseVC {
         startScaning()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         self.endScaning()
     }
     
@@ -113,10 +115,9 @@ class ScanVC: BaseVC {
         sliderView.frame = CGRect(x: 0, y: -30, width: holeH, height: 30)
         slideBGView.addSubview(sliderView)
         
-        
-        
-        naviView.addSubview(lightBtn)
         self.view.addSubview(naviView)
+        naviView.addSubview(lightBtn)
+        lightBtn.bm.addConstraints([.right(0), .bottom(0), .w(60), .h(44)])
     }
     
     @objc func timeRepateAction(){
