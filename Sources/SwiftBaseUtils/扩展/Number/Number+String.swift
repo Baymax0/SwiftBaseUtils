@@ -6,14 +6,25 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
-
-
-
 extension Int{
     func toString() -> String?{
         return String(self)
     }
 }
+
+extension Double{
+    func toString() -> String?{
+        return String(self)
+    }
+}
+
+extension Float{
+    func toString() -> String?{
+        return String(self)
+    }
+}
+
+
 
 // MARK: -  ---------------------- 转换 ------------------------
 extension String{

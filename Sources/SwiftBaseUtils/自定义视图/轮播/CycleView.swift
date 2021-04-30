@@ -6,7 +6,7 @@
 //  Copyright © 2017年 周玉. All rights reserved.
 //
 
-
+import UIKit
 
 //图片的模式
 enum contentMode {
@@ -24,6 +24,8 @@ class CycleView: UIView,UICollectionViewDelegate, UICollectionViewDataSource {
     weak var delegate : CycleViewDelegate?
     
     var mode : contentMode? = .scaleAspectFill
+
+    var contentInset : UIEdgeInsets = .zero
 
     //CollectionView复用cell的机制,不管当前的section有道少了item,当cell的宽和屏幕的宽一致是,当前屏幕最多显示两个cell(图片切换时是两个cell),切换完成时有且仅有一个cell,即使放大1000倍,内存中最多加载两个cell,所以不会造成内存暴涨现象
     let KCount = 100
@@ -195,6 +197,8 @@ extension CycleView {
         }else{
             cell.imageURLString = imageURLStringArr?[indexPath.item % (imageURLStringArr?.count)!] ?? ""
         }
+        cell.imageView.cornerRadius = 4
+        cell.imageView.bm.addConstraints([.top(self.contentInset.top), .left(self.contentInset.left), .right(self.contentInset.right), .bottom(self.contentInset.bottom)])
         return cell
     }
 }

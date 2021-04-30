@@ -29,7 +29,6 @@ extension CustomCellProtocol{
         var cell = table.dequeueReusableCell(withIdentifier: Identity) as? Self
         if cell == nil {
             let nib  = UINib(nibName: Identity, bundle: nil)
-            print(nib)
             table.register(nib, forCellReuseIdentifier: Identity)
             cell = (table.dequeueReusableCell(withIdentifier: Identity)) as? Self
         }

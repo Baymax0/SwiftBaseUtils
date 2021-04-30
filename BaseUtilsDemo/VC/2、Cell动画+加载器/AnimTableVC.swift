@@ -8,12 +8,14 @@
 
 import UIKit
 
-fileprivate class TempModel {
+class TempModel:HandyJSON {
     var desc = Date().toString("yyyy-MM-dd HH:mm:ss")
     var hadShowed: Bool = false  //初始值设为false 可以不让cell重复动画
+    
+    required init() {}
 }
     
-class AnimTableVC: BaseTableVC {
+class AnimTableVC: BaseTableVC<TempModel> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,10 +72,9 @@ extension AnimTableVC:UITableViewDelegate,UITableViewDataSource{
     
     // 顺序渐变显示
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let m = self.dataArr[indexPath.row] as! TempModel
-        guard m.hadShowed == false else {return}
-        m.hadShowed = true
-        
+        let cellModel = self.dataArr[indexPath.row] as! TempModel
+        guard cellModel.hadShowed == false else {return}
+        cellModel.hadShowed = true
         cell.alpha = 0
         self.linerAnimation(interval: 0.1) {
             UIView.animate(withDuration: 0.5) {

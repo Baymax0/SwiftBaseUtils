@@ -37,10 +37,10 @@ class BMIndicatorView: UIView {
             activityIndicatorLab.textColor = color!}
     }
     
-    class func showInView(_ view:UIView,frame:CGRect) -> BMIndicatorView {
-        let v = BMIndicatorView(frame: frame)
-        view.addSubview(v)
+    class func showInView(_ view:UIView) -> BMIndicatorView {
+        let v = BMIndicatorView(frame: view.bounds)
         v.initUI()
+        view.addSubview(v)
         v.alpha = 0
         return v
     }

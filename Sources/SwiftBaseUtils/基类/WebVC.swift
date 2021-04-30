@@ -30,13 +30,12 @@ class WebVC: BaseVC ,WKNavigationDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideNav = false
-        self.initUI()
         
         let url = URL(string: urlString!)
         webView.load(URLRequest(url: url!))
     }
     
-    func initUI() {
+    override func initUI() {
         webView = WKWebView( frame: CGRect(x:0, y:0, width:KScreenWidth, height:KHeightInNav))
         webView.backgroundColor = .KBGGray
         webView.navigationDelegate = self

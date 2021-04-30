@@ -18,9 +18,11 @@ class BaseNavigationVC: UINavigationController {
     // 拦截 push 操作
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if viewControllers.count > 0 {
-            let vc = viewController as! BaseVC
+            
             viewController.hidesBottomBarWhenPushed = true
-            viewController.navigationItem.leftBarButtonItem = self.barItem(vc, title: "", imgName: "BMback_Icon", action: #selector(vc.back))
+            if let vc = viewController as? BaseVC {
+                viewController.navigationItem.leftBarButtonItem = self.barItem(vc, title: "", imgName: "BMback_Icon", action: #selector(vc.back))                
+            }
         }
         super.pushViewController(viewController, animated: animated)
     }

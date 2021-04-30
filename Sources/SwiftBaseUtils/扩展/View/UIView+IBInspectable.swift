@@ -6,7 +6,7 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
-
+import UIKit
 
 
 extension UIView{
@@ -32,6 +32,39 @@ extension UIView{
             layer.shadowOpacity = 0.3
             layer.shadowRadius = 4
             layer.shadowOffset = CGSize(width: 2, height: 2)
+        }
+    }
+    
+    @IBInspectable var shadow_CornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.cornerRadius = newValue
+        }
+    }
+    
+    @IBInspectable var shadow_Color: UIColor {
+        get {
+            if layer.shadowColor == nil {
+                return .clear
+            }else{
+                return UIColor.init(cgColor: layer.shadowColor!)
+            }
+        }
+        set {
+            layer.shadowColor = newValue.cgColor
+            layer.shadowOpacity = 0.8
+            layer.shadowOffset = CGSize(width: 1, height: 1)
+        }
+    }
+    
+    @IBInspectable var shadow_Width: CGFloat {
+        get {
+            return layer.shadowRadius
+        }
+        set {
+            layer.shadowRadius = newValue
         }
     }
     

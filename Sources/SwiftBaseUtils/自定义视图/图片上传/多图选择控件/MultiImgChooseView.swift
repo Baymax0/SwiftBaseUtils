@@ -14,6 +14,8 @@ class BMImgItems : UIButton{
     var imgUrl:String?
     
     static var uploadBtnImgName = "BMImgItems_UploadImg"
+    
+    static var imgBackGroundColor = #colorLiteral(red: 0.9568627451, green: 0.9568627451, blue: 0.9764705882, alpha: 1)
 
     let deleteBtnW:CGFloat = 21
 
@@ -60,7 +62,7 @@ class BMImgItems : UIButton{
         self.setImage(UIImage(named: BMImgItems.uploadBtnImgName), for: .normal)
         self.layer.cornerRadius = 5
         self.layer.masksToBounds = true
-        self.backgroundColor = .rgb(230, 230, 230)
+        self.backgroundColor = BMImgItems.imgBackGroundColor
         self.imgUrl = nil
         self.imageView?.contentMode = .scaleAspectFit
         self.deleteBtn.isHidden = true
@@ -131,7 +133,7 @@ class MultiImgChooseView: UIView {
     ///计算属性 按钮宽度
     var imgW: CGFloat {
         let w = self.w > 0 ? self.w : KScreenWidth
-        return (w - imgBlock) / CGFloat(numEachRow) - imgBlock
+        return (w + imgBlock) / CGFloat(numEachRow) - imgBlock
     }
 
     //是否有按钮在上传
@@ -147,7 +149,7 @@ class MultiImgChooseView: UIView {
     //所有按钮地址
     var imgBtnArray = Array<BMImgItems>()
 
-    lazy private var uploadBtn: BMImgItems = BMImgItems(width: self.imgW)
+    lazy var uploadBtn: BMImgItems = BMImgItems(width: self.imgW)
 
 
     //初始化的时候 调用
@@ -213,7 +215,7 @@ class MultiImgChooseView: UIView {
 
 
     private func getRectWithIndex(_ index: Int) -> CGRect {
-        let x = imgBlock + CGFloat(index % numEachRow)*(imgBlock+imgW)
+        let x = CGFloat(index % numEachRow)*(imgBlock+imgW)
         let y = CGFloat(index / numEachRow)*(imgBlock+imgW)
         return CGRect(x: x, y: y, width: self.imgW, height: self.imgW)
     }

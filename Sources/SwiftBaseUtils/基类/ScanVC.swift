@@ -84,7 +84,6 @@ class ScanVC: BaseVC {
         super.viewDidLoad()
         self.hideNav = true
         self.view.backgroundColor = .black
-        self.initUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,7 +98,7 @@ class ScanVC: BaseVC {
         self.endScaning()
     }
     
-     func initUI() {
+    override func initUI() {
         self.view.addSubview(scanView)
         
         let bezierPath = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: KScreenWidth, height: KScreenHeight), cornerRadius: 0)

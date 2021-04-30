@@ -27,7 +27,7 @@ class BaseVC: UIViewController {
     var popGestureEnable = true
     /// 状态栏颜色  需要指定的  重写该属性
     override var preferredStatusBarStyle: UIStatusBarStyle{
-        get{ return hideNav ? .lightContent : .default }}
+        get{ return  .default }}
     /// 是否自动适配键盘与输入框位置
     var autoHideKeyboard:Bool = true
     
@@ -87,7 +87,10 @@ class BaseVC: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
         edgesForExtendedLayout = []
+        self.initUI()
     }
+    
+    func initUI() {}
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -117,9 +120,6 @@ class BaseVC: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if self.dismissType == .pop{
-            backClosure = nil
-        }
         if let b = self.hideNavBottonLine, b == true{
             self.findHairlineImageViewUnder(sView: self.navigationController?.navigationBar)?.isHidden = false
         }
@@ -175,7 +175,7 @@ class BaseVC: UIViewController {
     
     /// 自动判断运行延迟时间, 执行work
     /// interval:间隔时间
-    func linerAnimation(interval:TimeInterval=0.08, work: @escaping() -> Void) {
+    func linerAnimation(interval:TimeInterval=0.06, work: @escaping() -> Void) {
         let now = Date.timeIntervalSinceReferenceDate
         // 计算延迟时间，距离前一次执行动画
         var delay = interval
@@ -260,6 +260,37 @@ extension BaseVC {
         content.transform = CGAffineTransform.init(translationX: 0, y: 50) //缩放带弹性
         UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
             content.transform = CGAffineTransform.identity
+        }) { (_) in}
+    }
+    
+    /// 自定义位置显示View
+    func showMaskWithView(_ content:UIView, from:CGRect,to:CGRect){
+        maskView.removeFromSuperview()
+        self.window.addSubview(maskView)
+        maskView.bm.addConstraints([.fill])
+
+        blurMask.removeFromSuperview()
+        maskView.addSubview(blurMask)
+        blurMask.bm.addConstraints([.fill])
+        
+        blurMask.tag = 1;
+        blurMask.addTarget(self, action: #selector(hideMaskView), for: .touchUpInside)
+
+        content.removeFromSuperview()
+        maskView.addSubview(content)//把view的宽高布局转为约束
+        content.frame = from
+        
+        //animation
+        blurMask.alpha = 0;
+        content.alpha = 0.5 //透明度渐变不带弹性
+        UIView.animate(withDuration: 0.2, animations: {
+            content.alpha = 1
+            self.blurMask.alpha = 1
+        })
+        
+//        content.transform = CGAffineTransform.init(translationX: 0, y: 50) //缩放带弹性
+        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+            content.frame = to
         }) { (_) in}
     }
     

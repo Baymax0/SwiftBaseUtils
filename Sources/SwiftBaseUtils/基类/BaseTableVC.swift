@@ -25,14 +25,15 @@ class MyTableView: UITableView ,UIGestureRecognizerDelegate{
     }
 }
 
-class BaseTableVC: BaseVC {
+class BaseTableVC<T:HandyJSON>: BaseVC {
     
+    // 列表请求接口 最后一次的 code值
     var listRequestCode = 1
     
     var tableview: MyTableView?
     var pageNo = 1
     var PageSize = KPageSize
-    var dataArr:Array<Any>! = []
+    var dataArr:[T] = []
     var param = Dictionary<String,Any>()
     
     var indicatorView :BMIndicatorView!
@@ -51,10 +52,16 @@ class BaseTableVC: BaseVC {
         super.viewDidLoad()
     }
     
-    func initTableView(rect:CGRect ,_ style:UITableView.Style = .plain) -> Void {
-        tableview = MyTableView.init(frame: rect, style: style)
-        let cons:[EasyConstraint] = [.top(rect.origin.y), .left(0), .right(0), .h(rect.height)]
-        tableview?.bm.addConstraints(cons)
+    func initTableView(rect:CGRect! ,_ style:UITableView.Style = .plain) -> Void {
+        if rect == nil{
+            tableview = MyTableView.init(frame: .zero, style: style)
+            indicatorView = BMIndicatorView.showInView(view)
+            indicatorView.bm.addConstraints([.fill])
+        }else{
+            tableview = MyTableView.init(frame: rect, style: style)
+            indicatorView = BMIndicatorView.showInView(view)
+            indicatorView.frame = rect
+        }
         tableview?.separatorStyle = .none
         tableview?.backgroundColor = .white
         
@@ -66,9 +73,10 @@ class BaseTableVC: BaseVC {
         view.addSubview(tableview!)
         ignoreAutoAdjustScrollViewInsets(tableview)
         
-        indicatorView = BMIndicatorView.showInView(view, frame: rect)
-        indicatorView?.bm.addConstraints(cons)
     }
+    
+    
+    
     
     func initMJHeadView() -> Void {
         let header = MJRefreshNormalHeader()
@@ -110,7 +118,7 @@ class BaseTableVC: BaseVC {
     }
     
     @discardableResult
-    func getList<T:HandyJSON>(key: BMApiTemplete<Array<T>?>, page:Int, finished:@escaping ()->()) -> DataRequest{
+    func getList(key: BMApiTemplete<Array<T>?>, page:Int, finished:@escaping ()->()) -> DataRequest{
         param["pageNumber"] = page
         param["pageNo"] = page
         param["pageSize"] = PageSize
@@ -120,11 +128,11 @@ class BaseTableVC: BaseVC {
             if resp?.code == 1{
                 self.pageNo = page
 
-                let temp = resp!.data
+                let temp = resp!.data ?? []
                 if page == 1{
-                    self.dataArr = temp ?? []
+                    self.dataArr = temp
                 }else{
-                    self.dataArr.append(contentsOf: temp ?? [])
+                    self.dataArr.append(contentsOf: temp)
                 }
             }else if resp!.code < 0 && page == 1{
                 self.dataArr = []

@@ -44,7 +44,8 @@ class BaseCollVC: BaseVC {
         collectionView?.backgroundColor = .white
         self.view.addSubview(collectionView!)
         self.ignoreAutoAdjustScrollViewInsets(collectionView)
-        indicatorView = BMIndicatorView.showInView(view, frame: rect)
+        indicatorView = BMIndicatorView.showInView(view)
+        indicatorView.frame = rect
     }
     
     
