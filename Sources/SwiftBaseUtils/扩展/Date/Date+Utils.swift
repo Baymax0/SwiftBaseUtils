@@ -125,10 +125,10 @@ extension Date {
         let weekday = components.weekday!
         //这个月第几周
         let weekdayOrdinal = components.weekdayOrdinal!
-        print(weekOfYear)
-        print(weekOfMonth)
-        print(weekday)
-        print(weekdayOrdinal)
+        bm_print(weekOfYear)
+        bm_print(weekOfMonth)
+        bm_print(weekday)
+        bm_print(weekdayOrdinal)
         if weekOfYear == 1 && weekOfMonth != 1 {
             weekOfYear = 53
         }

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class CollectionViewVC: BaseTableVC {
+class CollectionViewVC: BaseVC{
     
     var collectionView:CollectionView!
     var dataSource: ArrayDataSource<Int>!

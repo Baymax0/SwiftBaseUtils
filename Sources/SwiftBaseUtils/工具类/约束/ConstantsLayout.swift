@@ -39,11 +39,11 @@ enum EasyConstraint {
     /// 距父视图垂直剧中
     case center_Y(CGFloat)
     
-    /// 在其他view竖直下边
+    /// 在其他view竖直上边
     case above(UIView,CGFloat)
     /// 在其他view竖直下边
     case under(UIView,CGFloat)
-    /// 在其他view水平右边
+    /// 在其他view水平左边
     case before(UIView,CGFloat)
     /// 在其他view水平右边
     case after(UIView,CGFloat)
@@ -81,6 +81,12 @@ extension Baymax where Base: UIView{
     @discardableResult
     func addConstraints(_ constraints:[EasyConstraint]) -> [NSLayoutConstraint]{
         base.translatesAutoresizingMaskIntoConstraints = false
+        
+        if base.superview == nil {
+            bm_print("-------- ⚠️ warning --------")
+            bm_print("当前view的父view为空，会导致约束设置无效")
+            bm_print("-------- ⚠️ warning --------")
+        }
         
         var result = [NSLayoutConstraint]()
         guard let sup = base.superview else { return [] }

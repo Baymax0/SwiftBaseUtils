@@ -88,8 +88,7 @@ class BMBasePicker: UIView {
     ///
     /// - Parameter high: 下方内容高度
     func setContentH(_ high:CGFloat){
-        contentViewY = UIScreen.main.bounds.height - high - 15
-        contentViewY = KIsIphoneX ? contentViewY! - 34 : contentViewY!
+        contentViewY = UIScreen.main.bounds.height - high - 15 - safeArea_Bottom
         let leftBlock:CGFloat   = 10.0 // 选择器 距左 宽度
         let comfirmBtnH:CGFloat = 44 //确认按钮 高度
         contentView.frame   = CGRect(x: leftBlock, y: contentViewY!, width: UIScreen.main.bounds.width-leftBlock*2, height: high)

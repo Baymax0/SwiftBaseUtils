@@ -9,7 +9,6 @@
 
 
 class BaseCell: UITableViewCell {
-
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
@@ -24,8 +23,8 @@ protocol CustomCellProtocol {
 
 extension CustomCellProtocol{
     static func cellFromNib(with table:UITableView) -> Self{
-        let c = self as! UITableViewCell.Type
-        let Identity = String(describing: c.classForCoder())
+        let type = self as! UITableViewCell.Type
+        let Identity = String(describing: type.classForCoder())
         var cell = table.dequeueReusableCell(withIdentifier: Identity) as? Self
         if cell == nil {
             let nib  = UINib(nibName: Identity, bundle: nil)
@@ -35,11 +34,11 @@ extension CustomCellProtocol{
         return cell!
     }
     static func cell(with table:UITableView) -> Self{
-        let c = self as! UITableViewCell.Type
-        let Identity = String(describing: c.classForCoder())
+        let type = self as! UITableViewCell.Type
+        let Identity = String(describing: type.classForCoder())
         var cell = table.dequeueReusableCell(withIdentifier: Identity) as? Self
         if cell == nil {
-            table.register(c, forCellReuseIdentifier: Identity)
+            table.register(type, forCellReuseIdentifier: Identity)
             cell = table.dequeueReusableCell(withIdentifier: Identity) as? Self
         }
         return cell!
@@ -52,5 +51,6 @@ extension UITableViewCell:CustomCellProtocol{
         return UINib.init(nibName: name, bundle: Bundle.main)
     }
 }
+
 
 

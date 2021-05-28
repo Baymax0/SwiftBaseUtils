@@ -13,12 +13,12 @@ class BaseNavigationVC: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.interactivePopGestureRecognizer?.delegate = self
+//        self.view.backgroundColor = .white
     }
     
     // 拦截 push 操作
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if viewControllers.count > 0 {
-            
             viewController.hidesBottomBarWhenPushed = true
             if let vc = viewController as? BaseVC {
                 viewController.navigationItem.leftBarButtonItem = self.barItem(vc, title: "", imgName: "BMback_Icon", action: #selector(vc.back))                

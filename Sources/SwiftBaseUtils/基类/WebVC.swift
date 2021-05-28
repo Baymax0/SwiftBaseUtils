@@ -73,7 +73,7 @@ class WebVC: BaseVC ,WKNavigationDelegate{
             super.back()
         }else{
             let count = webView.backForwardList.backList.count
-            print(count)
+            bm_print(count)
             if count >= 1{
                 webView.goBack()
             }else{
@@ -84,7 +84,7 @@ class WebVC: BaseVC ,WKNavigationDelegate{
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
         if let str = navigationResponse.response.url?.absoluteString{
-            print("跳转：" + str)
+            bm_print("跳转：" + str)
         }
         decisionHandler(.allow)
     }

@@ -145,7 +145,7 @@ class HostConfig{
         }else{
             if let arr = cache[.savedHosts]{
                 if arr.count == 0 || arr.count <= index{
-                    print("测试服地址为空，使用正式地址")
+                    bm_print("测试服地址为空，使用正式地址")
                     return publishHost
                 }else{
                     let url = arr[index]
@@ -156,7 +156,7 @@ class HostConfig{
                     }
                 }
             }else{
-                print("测试服地址为空，使用正式地址")
+                bm_print("测试服地址为空，使用正式地址")
                 return publishHost
             }
         }

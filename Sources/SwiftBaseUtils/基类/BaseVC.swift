@@ -86,7 +86,10 @@ class BaseVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.isTranslucent = false
-        edgesForExtendedLayout = []
+        
+        edgesForExtendedLayout = .all
+        extendedLayoutIncludesOpaqueBars = YES
+        
         self.initUI()
     }
     
@@ -130,6 +133,7 @@ class BaseVC: UIViewController {
     
     /// 返回事件
     @objc func back() {
+        self.dismissType = .pop
         if let _ = self.navigationController {
             self.pop()
         }else{
@@ -257,8 +261,39 @@ extension BaseVC {
             self.blurMask.alpha = 1
         })
         
-        content.transform = CGAffineTransform.init(translationX: 0, y: 50) //缩放带弹性
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+        content.transform = CGAffineTransform.init(translationX: 0, y: 100) //缩放带弹性
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+            content.transform = CGAffineTransform.identity
+        }) { (_) in}
+    }
+    
+    /// 居下显示View
+    func showMaskWithViewAtBottom_full(_ content:UIView){
+        maskView.removeFromSuperview()
+        self.window.addSubview(maskView)
+        maskView.bm.addConstraints([.fill])
+
+        blurMask.removeFromSuperview()
+        maskView.addSubview(blurMask)
+        blurMask.bm.addConstraints([.fill])
+        
+        blurMask.tag = 1;
+        blurMask.addTarget(self, action: #selector(hideMaskView), for: .touchUpInside)
+
+        content.removeFromSuperview()
+        maskView.addSubview(content)//把view的宽高布局转为约束
+        content.bm.addConstraints([.w(content.w), .h(content.h), .center_X(0), .bottom(0)])
+        
+        //animation
+        blurMask.alpha = 0;
+        content.alpha = 0.5 //透明度渐变不带弹性
+        UIView.animate(withDuration: 0.2, animations: {
+            content.alpha = 1
+            self.blurMask.alpha = 1
+        })
+        
+        content.transform = CGAffineTransform.init(translationX: 0, y: 70) //缩放带弹性
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
             content.transform = CGAffineTransform.identity
         }) { (_) in}
     }
@@ -307,8 +342,8 @@ extension BaseVC {
 
         UIView.animate(withDuration: 0.15, animations: {
             content?.alpha = 0
-            if self.maskView.tag == 1{
-                content?.transform = CGAffineTransform.init(translationX: 0, y: 50)
+            if self.blurMask.tag == 1{
+                content?.transform = CGAffineTransform.init(translationX: 0, y: 80)
             }else{
                 content?.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
             }
@@ -331,25 +366,29 @@ extension BaseVC {
     }
     
     func pushViewController(_ vc:UIViewController, _ animation:Bool = true) {
+        self.dismissType = .push
         if let n = self.navigationController{
             n.pushViewController(vc, animated: animation)
-            self.dismissType = .push
+        }else{
+            self.present(vc, animated: animation, completion: nil)
         }
     }
     
     func pushViewControllerWithHero(_ vc:BaseVC) {
+        self.dismissType = .push
         if let n = self.navigationController{
             n.hero.isEnabled = true
             n.pushViewController(vc, animated: true)
             vc.hero.isEnabled = true
-            self.dismissType = .push
         }
     }
     
     func pop(_ animation:Bool = true) -> Void{
+        self.dismissType = .pop
         if let n = self.navigationController{
             n.popViewController(animated: animation)
-            self.dismissType = .pop
+        }else{
+            self.dismiss(animated: animation, completion: nil)
         }
     }
     

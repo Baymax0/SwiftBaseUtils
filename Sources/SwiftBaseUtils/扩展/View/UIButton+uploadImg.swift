@@ -110,20 +110,25 @@ extension UIButton{
         self.setTitle("", for: .normal)
 
 
-        let rect = CGRect(x: (self.frame.size.width-30) / 2, y: 7, width: 30, height: 30)
-        let activityIndicatorView = NVActivityIndicatorView(frame: rect,
+//        let rect = CGRect(x: (self.frame.size.width-30) / 2, y: 7, width: 30, height: 30)
+        let activityIndicatorView = NVActivityIndicatorView(frame: .zero,
                                                         type: NVActivityIndicatorType.circleStrokeSpin)
         activityIndicatorView.tag = 93339
         activityIndicatorView.color = .white
         activityIndicatorView.startAnimating()
         self.addSubview(activityIndicatorView)
+        activityIndicatorView.bm.addConstraints([.center, .w(30), .h(30)])
     }
 
     // 显示等待 加载器
-    func hideIndicator() -> Void {
+    func hideIndicator(_ text:String? = nil) -> Void {
         if let lab = self.viewWithTag(93338) as? UILabel{
             lab.removeFromSuperview()
-            self.setTitle(lab.text, for: .normal)
+            if text != nil{
+                self.setTitle(text, for: .normal)
+            }else{
+                self.setTitle(lab.text, for: .normal)
+            }
         }
         if let view = self.viewWithTag(93339) as? NVActivityIndicatorView {
             view.removeFromSuperview()

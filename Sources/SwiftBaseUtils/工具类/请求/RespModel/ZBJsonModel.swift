@@ -56,17 +56,17 @@ public class BMRequester_Model<T:HandyJSON>: BMRequester{
             }
             let mod = JSONDeserializer<ZBJsonModel<T>>.deserializeFrom(json: jsonStr)
             if mod != nil{
-                print("code:\(mod!.code ?? -99)")
-                print("msg:\(mod!.msg ?? "")")
-                print("data:\(jsonStr ?? ""))")
+                bm_print("code:\(mod!.code ?? -99)")
+                bm_print("msg:\(mod!.msg ?? "")")
+                bm_print("data:\(jsonStr ?? ""))")
                 self.handelResponce(code: mod?.code)
                 finish(mod)
             }else{
-                print(" ***** 解析失败： ***** ")
+                bm_print(" ***** 解析失败： ***** ")
                 if jsonStr != nil{
-                    print(jsonStr!)
+                    bm_print(jsonStr!)
                 }else{
-                    print("解析失败")
+                    bm_print("解析失败")
                 }
                 let err = ZBJsonModel<T>()
                 err.code = RequestError.responsDeserializeFalid.rawValue

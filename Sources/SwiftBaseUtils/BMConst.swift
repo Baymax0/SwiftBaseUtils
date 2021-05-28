@@ -14,18 +14,41 @@ let NO = false
 let KPageSize:Int = 10
 let KReloadIntervalTime:Double = 600
 
-func judgeScream() -> Bool {
-    if #available(iOS 11.0, *) {
-        // 有时候会莫名其妙 keyWindow = nil
-        if let a = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.safeAreaInsets.bottom{
-            return a != 0 ? true:false
-        }else{
-            return true
-        }
-    } else {
-        return false
-    }
+
+func bm_print(_ items: Any..., separator: String = " ", terminator: String = "\n"){
+    #if DEBUG
+    print(items, separator: separator, terminator: terminator)
+    #endif
 }
+
+func judgeScream() -> Bool {
+    return safeArea(.top) != 0
+}
+
+public enum SafeDirect{
+    case top
+    case left
+    case bottom
+    case right
+}
+
+func safeArea(_ direct:SafeDirect) -> CGFloat{
+    if #available(iOS 11.0, *) {
+        if let inset = UIApplication.shared.windows.filter({$0.isKeyWindow}).first?.safeAreaInsets{
+            if direct == .top{ return inset.top }
+            if direct == .left{ return inset.left }
+            if direct == .bottom{ return inset.bottom }
+            if direct == .right{ return inset.right }
+        }
+        return 0
+    }
+    return 0
+}
+
+/// safeArea
+let safeArea_Top    = safeArea(.top)
+/// safeArea
+let safeArea_Bottom = safeArea(.bottom)
 
 /// 屏幕的宽度
 let KScreenWidth    = UIScreen.main.bounds.width
@@ -36,11 +59,10 @@ let KIsIphoneX      = judgeScream()
 /// 导航栏下内容高度
 let KHeightInNav    = KScreenHeight - KNaviBarH
 /// 导航栏高度
-let KNaviBarH       = CGFloat(KIsIphoneX ? 88.0:64.0)
+let KNaviBarH       = safeArea(.top) + 44
 /// tabbar高度
-let KTabBarH        = CGFloat(KIsIphoneX ? 83.0:49.0)
-/// 底部多余的高度
-let KBottomH        = CGFloat(KIsIphoneX ? 34:0)
+let KTabBarH        = safeArea(.bottom) + 49
+
 /// 375下的尺寸  size*KRatio375
 let KRatio375       = UIScreen.main.bounds.width / 375.0
 

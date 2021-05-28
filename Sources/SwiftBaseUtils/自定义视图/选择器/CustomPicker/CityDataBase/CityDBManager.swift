@@ -78,7 +78,7 @@ class CityDBManager {
                 model.shortName = try user.get(shortname)
                 provinceArray.append(model)
             } catch {
-                print(error)
+                bm_print(error)
                 return Array<Address>()
             }
         }
@@ -102,7 +102,7 @@ class CityDBManager {
                 model.shortName = try user.get(shortname)
                 cityArray.append(model)
             } catch {
-                print(error)
+                bm_print(error)
                 return Array<Address>()
             }
         }
@@ -126,7 +126,7 @@ class CityDBManager {
                 model.shortName = try user.get(shortname)
                 districtArray.append(model)
             } catch {
-                print(error)
+                bm_print(error)
                 return Array<Address>()
             }
         }

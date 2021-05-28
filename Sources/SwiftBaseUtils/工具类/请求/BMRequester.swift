@@ -75,8 +75,8 @@ public class BMRequester{
                 case  .failure(let error):
                     let err = self.bundleError(error as NSError)
                     
-                    print(" ***** 请求失败： ***** ")
-                    print("\(error)")
+                    bm_print(" ***** 请求失败： ***** ")
+                    bm_print("\(error)")
                     finish(err.rawValue, nil)
             }
         }
@@ -100,7 +100,7 @@ public class BMRequester{
                             if resp.code == 1{
                                 let data = resp.data
                                 if let url = data?["url"] as? String{
-                                    print(url)
+                                    bm_print(url)
                                     finish(url)
                                 }else{
                                     finish(nil)
@@ -113,7 +113,7 @@ public class BMRequester{
                         }
                     //常见 访问失败 原因
                     case .failure(let error ):
-                        print(error)
+                        bm_print(error)
                         finish(nil)
                     }
                 })
@@ -146,8 +146,8 @@ public class BMRequester{
                 count += 1
             }
         }
-        print("----------------------")
-        print(allUrl)
+        bm_print("----------------------")
+        bm_print(allUrl)
     }
     
     func handelResponce(code:Int?){
@@ -175,7 +175,7 @@ public class BMRequester{
         case 4:
             return .responsDeserializeFalid
         default:
-            print("未处理的 error code:\(err.code)\n \(err)")
+            bm_print("未处理的 error code:\(err.code)\n \(err)")
             return .unknow
         }
     }

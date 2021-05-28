@@ -41,17 +41,17 @@ public class BMRequester_String : BMRequester{
         return self.requestJson(url, method: api.method, params: withDefault) { (code,jsonStr) in
             let mod = JSONDeserializer<ZBJsonString>.deserializeFrom(json: jsonStr)
             if mod != nil{
-                print("code:\(mod!.code ?? -99)")
-                print("msg:\(mod!.msg ?? "")")
-                print("data:\(String(describing: jsonStr!)))")
+                bm_print("code:\(mod!.code ?? -99)")
+                bm_print("msg:\(mod!.msg ?? "")")
+                bm_print("data:\(String(describing: jsonStr!)))")
                 self.handelResponce(code: mod?.code)
                 finish(mod)
             }else{
-                print(" ***** 解析失败： ***** ")
+                bm_print(" ***** 解析失败： ***** ")
                 if jsonStr != nil{
-                    print(jsonStr!)
+                    bm_print(jsonStr!)
                 }else{
-                    print("请求失败")
+                    bm_print("请求失败")
                 }
                 let err = ZBJsonString()
                 err.code = RequestError.responsDeserializeFalid.rawValue

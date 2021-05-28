@@ -150,7 +150,7 @@ class ScanVC: BaseVC {
                     device.torchMode = .on
                     device.unlockForConfiguration()
                 }catch{
-                    print(error)
+                    bm_print(error)
                     Hud.showText("闪光灯无法打开")
                     return
                 }
@@ -201,7 +201,7 @@ class ScanVC: BaseVC {
     
     // 拿到扫描内容 重写
     func receiveScanCode(_ code:String?){
-        print(code ?? "")
+        bm_print(code ?? "")
     }
 }
 
