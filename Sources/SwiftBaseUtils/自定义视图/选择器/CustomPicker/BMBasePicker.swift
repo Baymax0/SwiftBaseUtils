@@ -6,6 +6,14 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
+protocol BMBasePicker_Base {
+    func show()
+    /// 关闭
+    func close()
+    /// 确认
+    func comfirm()
+}
+
 
 class BMBasePicker: UIView {
     
@@ -24,9 +32,22 @@ class BMBasePicker: UIView {
     var confirmBtn:UIButton = {
         let btn = UIButton(type: .custom)
         btn.setTitle("确 定", for: .normal)
+        btn.layer.cornerRadius = 10
         btn.backgroundColor     = BMBasePicker.tintColor
-        btn.titleLabel?.font    = UIFont.systemFont(ofSize: 16)
+        btn.titleLabel?.font    = UIFont.boldSystemFont(ofSize: 16)
         btn.addTarget(self, action: #selector(comfirm), for: .touchUpInside)
+        return btn
+    }()
+    
+    /// 确认按钮
+    var cancelBtn:UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setTitle("取 消", for: .normal)
+        btn.setTitleColor(.K333, for: .normal)
+        btn.layer.cornerRadius = 10
+        btn.backgroundColor     = #colorLiteral(red: 0.9395224452, green: 0.9491952062, blue: 0.9593877196, alpha: 1)
+        btn.titleLabel?.font    = UIFont.boldSystemFont(ofSize: 16)
+        btn.addTarget(self, action: #selector(close), for: .touchUpInside)
         return btn
     }()
     
@@ -34,7 +55,7 @@ class BMBasePicker: UIView {
     var contentView:UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
         view.backgroundColor        = .white
-        view.layer.cornerRadius     = 10
+        view.layer.cornerRadius     = 14
         view.layer.masksToBounds    = true
         return view
     }()
@@ -44,7 +65,7 @@ class BMBasePicker: UIView {
     /// 水印 Lab
     private(set) var bgLab:UILabel = {
         let lab = UILabel()
-        lab.textColor = UIColor.init(red: 233/255.0, green: 233/255.0, blue: 233/255.0, alpha: 1)
+        lab.textColor = UIColor.init(red: 233/255.0, green: 233/255.0, blue: 233/255.0, alpha: 0.8)
         lab.font = UIFont.systemFont(ofSize: 50)
         lab.text = ""
         lab.adjustsFontSizeToFitWidth = true
@@ -72,6 +93,8 @@ class BMBasePicker: UIView {
         addSubview(bgMaskView)
         addSubview(contentView)
 
+        
+        contentView.addSubview(cancelBtn)
         contentView.addSubview(confirmBtn)
         contentView.addSubview(bgLab)
         contentView.addSubview(pickerView)
@@ -83,18 +106,22 @@ class BMBasePicker: UIView {
 
 
 // MARK: - 如需监听 重写再调用super方法 即可
-@objc extension BMBasePicker{
+@objc extension BMBasePicker: BMBasePicker_Base{
     /// 内容高度（其他控件跟着调节）
     ///
     /// - Parameter high: 下方内容高度
     func setContentH(_ high:CGFloat){
         contentViewY = UIScreen.main.bounds.height - high - 15 - safeArea_Bottom
-        let leftBlock:CGFloat   = 10.0 // 选择器 距左 宽度
-        let comfirmBtnH:CGFloat = 44 //确认按钮 高度
-        contentView.frame   = CGRect(x: leftBlock, y: contentViewY!, width: UIScreen.main.bounds.width-leftBlock*2, height: high)
-        confirmBtn.frame    = CGRect(x: 0, y: high - comfirmBtnH, width: contentView.frame.size.width, height: comfirmBtnH)
-        bgLab.frame         = CGRect(x: 15, y: 0, width: contentView.frame.size.width-30, height: contentView.frame.size.height-comfirmBtnH)
-        pickerView.frame    = CGRect(x: 0, y: 0, width: contentView.frame.size.width, height: contentView.frame.size.height-comfirmBtnH)
+        let leftBlock     :CGFloat = 10.0 // 选择器 距左 宽度
+        let comfirmBtnH   :CGFloat = 44 //确认按钮 高度
+        let buttonx       :CGFloat = 16
+        let buttonBetween :CGFloat = 8
+        let buttonW       :CGFloat = (contentView.w - buttonx - buttonx - buttonBetween)/2
+        contentView.frame = CGRect(x : leftBlock, y : contentViewY!, width : UIScreen.main.bounds.width-leftBlock*2, height : high)
+        cancelBtn.frame   = CGRect(x : buttonx, y : high - comfirmBtnH - buttonx, width : buttonW, height : comfirmBtnH)
+        confirmBtn.frame  = CGRect(x : contentView.w / 2 + buttonBetween / 2, y : cancelBtn.y, width : buttonW, height : comfirmBtnH)
+        bgLab.frame       = CGRect(x : 15, y : 0, width : contentView.w-30, height : cancelBtn.y)
+        pickerView.frame  = CGRect(x : 0, y : 0, width : contentView.w, height : cancelBtn.y)
     }
     /// 显示
     func show(){

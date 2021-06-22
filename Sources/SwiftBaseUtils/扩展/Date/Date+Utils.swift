@@ -18,7 +18,6 @@ extension Optional where Wrapped == Date{
     }
 }
 
-
 extension Date {
     func toString(_ dateFormat:String="yyyy-MM-dd HH:mm") -> String {
         let timeZone = TimeZone(identifier: "Asia/Shanghai")

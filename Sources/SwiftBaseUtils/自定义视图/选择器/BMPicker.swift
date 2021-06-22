@@ -77,14 +77,14 @@ class BMPicker: NSObject {
     ///   - selected    : 点击确认后 回调 [province, city, district]
     ///   - changed     : 数据发生修改时 回调 [province, city, district]
     /// - Returns: 返回选择器对象
-    static func cityPicker(_ provinceId:Int64?,_ cityId:Int64?,_ districtId:Int64?, selected:@escaping(_:Array<Address>)->(), _ changed:((_:Array<Address>)->())? = nil) -> BMCityPicker{
-        let picker = BMCityPicker(provinceId, cityId, districtId, selected, changed)
+    static func cityPicker(_ provinceId:Int?,_ cityId:Int?,_ districtId:Int?, selected:@escaping(_:Array<Address>)->(), _ changed:((_:Array<Address>)->())? = nil) -> BMCityPicker{
+        let picker = BMCityPicker(provinceId.toInt64(), cityId.toInt64(), districtId.toInt64(), selected, changed)
         return picker
     }
     
     /// 只选择 省份  城市
-    static func cityPicker(_ provinceId:Int64?,_ cityId:Int64?, selected:@escaping(_:Array<Address>)->(), _ changed:((_:Array<Address>)->())? = nil) -> BMCityPicker{
-        let picker = BMCityPicker(provinceId, cityId, selected, changed)
+    static func cityPicker(_ provinceId:Int?,_ cityId:Int?, selected:@escaping(_:Array<Address>)->(), _ changed:((_:Array<Address>)->())? = nil) -> BMCityPicker{
+        let picker = BMCityPicker(provinceId.toInt64(), cityId.toInt64(), selected, changed)
         return picker
     }
 

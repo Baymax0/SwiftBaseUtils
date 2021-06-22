@@ -8,7 +8,7 @@
 import Foundation
 
 extension CGFloat{
-    func getValueBetween(_ minValue:CGFloat,_ maxValue:CGFloat) -> CGFloat {
+    func between(_ minValue:CGFloat,_ maxValue:CGFloat) -> CGFloat {
         if self < minValue{
             return minValue
         } else if self > maxValue{
@@ -17,7 +17,16 @@ extension CGFloat{
         return self
     }
 }
-
+extension Int{
+    func between(_ minValue:Int,_ maxValue:Int) -> Int {
+        if self < minValue{
+            return minValue
+        } else if self > maxValue{
+            return maxValue
+        }
+        return self
+    }
+}
 
 // 定义命名空间 方便找addConstraints 方法
 //public final class Baymax<Base> {

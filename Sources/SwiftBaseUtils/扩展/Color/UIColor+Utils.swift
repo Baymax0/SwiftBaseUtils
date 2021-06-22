@@ -25,7 +25,7 @@ extension UIColor {
 
 extension UIColor {
     
-    open class var maskView: UIColor    { return UIColor.black.withAlphaComponent(0.45)}
+    open class var maskView: UIColor    { return UIColor.black.withAlphaComponent(0.25)}
     
     open class var KBlue: UIColor       { return #colorLiteral(red: 0.1274686485, green: 0.5686141059, blue: 0.9647058824, alpha: 1) }
     open class var KRed: UIColor        { return #colorLiteral(red: 0.9803921569, green: 0.333299367, blue: 0.3461571215, alpha: 1) }
@@ -48,6 +48,10 @@ extension UIColor {
         return UIColor.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: 1)
     }
     
+    /// RGB 0～255
+    open class func rgb(_ red:CGFloat, _ green:CGFloat, _ blue:CGFloat, _ alpha:CGFloat) -> UIColor {
+        return UIColor.init(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
+    }
     
     /// 支持“#”， 三位"FFF"，六位"FFFFFF"
     open class func hex(_ hex:String) -> UIColor {

@@ -257,6 +257,7 @@ extension BMDatePicker{
                 selectedIndexArr[2] = maxDay-1
             }
             pickerView.selectRow(selectedIndexArr[2], inComponent: 2, animated: YES)
+            pickerView.reloadComponent(2)
         }
     }
 

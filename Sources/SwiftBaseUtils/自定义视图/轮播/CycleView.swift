@@ -197,7 +197,7 @@ extension CycleView {
         }else{
             cell.imageURLString = imageURLStringArr?[indexPath.item % (imageURLStringArr?.count)!] ?? ""
         }
-        cell.imageView.cornerRadius = 4
+        cell.imageView.cornerRadius = self.layer.cornerRadius
         cell.imageView.bm.addConstraints([.top(self.contentInset.top), .left(self.contentInset.left), .right(self.contentInset.right), .bottom(self.contentInset.bottom)])
         return cell
     }

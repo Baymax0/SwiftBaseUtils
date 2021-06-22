@@ -77,8 +77,6 @@ class CollectionViewVC: BaseVC{
                 self.provider.animator = MyAnimator()}
         }
         picker.show()
-        
     }
-    
     
 }

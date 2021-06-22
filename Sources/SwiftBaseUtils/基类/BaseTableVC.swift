@@ -185,6 +185,11 @@ class BaseTableVC<T:HandyJSON>: BaseVC {
         }else{
             indicatorView.hide()
             tableview?.isHidden = false
+            tableview?.alpha = 0
+            UIView.animate(withDuration: 0.2) {
+                self.tableview?.alpha = 1
+            } completion: { (_) in
+            }
         }
         tableview?.reloadData()
         

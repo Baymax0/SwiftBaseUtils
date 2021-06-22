@@ -8,6 +8,26 @@
 
 import SQLite
 
+extension Optional where Wrapped == Int64 {
+    func toInt() -> Int? {
+        if self == nil{
+            return nil
+        }else{
+            return Int(self!)
+        }
+    }
+}
+
+extension Optional where Wrapped == Int {
+    func toInt64() -> Int64? {
+        if self == nil{
+            return nil
+        }else{
+            return Int64(self!)
+        }
+    }
+}
+
 struct Address {
     var ID:Int64?
     var name:String?

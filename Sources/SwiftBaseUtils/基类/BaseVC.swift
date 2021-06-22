@@ -9,6 +9,12 @@
 
 import IQKeyboardManagerSwift
 
+protocol CustomBottomAlertViewDelagate{
+    func willAppear()
+    func didAppear()
+    func disappear()
+}
+
 // 页面离开的方式
 enum BMVCDismissType {
     case pop    //返回上一级 页面注销
@@ -81,6 +87,9 @@ class BaseVC: UIViewController {
     
     /// 上次动画时间，用于cell列表刷新等 有先后顺序的动画
     private var lastCellDisplayTimeInterval: TimeInterval = Date.timeIntervalSinceReferenceDate
+    
+    
+    private var alertBottomView:CustomBottomAlertViewDelagate?
     
     //MARK: ----------- vc生命周期 -----------
     override func viewDidLoad() {
@@ -284,18 +293,30 @@ extension BaseVC {
         maskView.addSubview(content)//把view的宽高布局转为约束
         content.bm.addConstraints([.w(content.w), .h(content.h), .center_X(0), .bottom(0)])
         
+        self.alertBottomView = content as? CustomBottomAlertViewDelagate
+        if let v = self.alertBottomView{
+            v.willAppear()
+        }
+        
         //animation
         blurMask.alpha = 0;
-        content.alpha = 0.5 //透明度渐变不带弹性
+//        content.alpha = 0.5 //透明度渐变不带弹性
         UIView.animate(withDuration: 0.2, animations: {
-            content.alpha = 1
+//            content.alpha = 1
             self.blurMask.alpha = 1
         })
         
-        content.transform = CGAffineTransform.init(translationX: 0, y: 70) //缩放带弹性
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.65, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+        content.alpha = 1
+
+        content.transform = CGAffineTransform.init(translationX: 0, y: content.h)
+        let time:Double = Double(content.h) / 2100
+        UIView.animate(withDuration: time, delay: 0, options: .curveEaseOut) {
             content.transform = CGAffineTransform.identity
-        }) { (_) in}
+        } completion: { (_) in
+            if let v = self.alertBottomView{
+                v.didAppear()
+            }
+        }
     }
     
     /// 自定义位置显示View
@@ -333,6 +354,11 @@ extension BaseVC {
     @objc func hideMaskView() -> Void {
         let views = maskView.subviews
         let content = views.last//提示框
+        
+        if let v = self.alertBottomView{
+            v.disappear()
+            self.alertBottomView = nil
+        }
         
         UIView.animate(withDuration: 0.3) {
             self.blurMask.alpha = 0
