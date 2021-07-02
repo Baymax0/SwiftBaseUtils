@@ -37,10 +37,10 @@ extension UIColor {
     open class var KBGGray: UIColor     { return #colorLiteral(red: 0.9436198614, green: 0.9477578669, blue: 0.9655034961, alpha: 1) }
     open class var KBGGrayLine: UIColor { return #colorLiteral(red: 0.9019607843, green: 0.9019607843, blue: 0.9019607843, alpha: 1) }
     
-    open class var K333: UIColor   { return #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1) }
-    open class var K666: UIColor   { return #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1) }
-    open class var K999: UIColor   { return #colorLiteral(red: 0.6, green: 0.6, blue: 0.6, alpha: 1) }
-    open class var KCCC: UIColor   { return #colorLiteral(red: 0.7999204993, green: 0.8000556827, blue: 0.7999026775, alpha: 1) }
+    open class var K333 : UIColor   { return #colorLiteral(red : 0.2, green : 0.2, blue : 0.2, alpha : 1) }
+    open class var K666 : UIColor   { return #colorLiteral(red : 0.4, green : 0.4, blue : 0.4, alpha : 1) }
+    open class var K999 : UIColor   { return #colorLiteral(red : 0.6, green : 0.6, blue : 0.6, alpha : 1) }
+    open class var KCCC : UIColor   { return #colorLiteral(red : 0.7999204993, green : 0.8000556827, blue : 0.7999026775, alpha : 1) }
 
 
     /// RGB 0～255

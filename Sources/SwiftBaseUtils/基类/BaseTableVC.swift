@@ -180,16 +180,16 @@ class BaseTableVC<T:HandyJSON>: BaseVC {
     //刷新数据
     func reloadData(_ code:Int = 1) -> Void {
         if dataArr.count == 0 && code == -1{
-            tableview?.isHidden = true
+//            tableview?.isHidden = true
             indicatorView.showNoData()
         }else{
             indicatorView.hide()
             tableview?.isHidden = false
-            tableview?.alpha = 0
-            UIView.animate(withDuration: 0.2) {
-                self.tableview?.alpha = 1
-            } completion: { (_) in
-            }
+//            tableview?.alpha = 0
+//            UIView.animate(withDuration: 0.2) {
+//                self.tableview?.alpha = 1
+//            } completion: { (_) in
+//            }
         }
         tableview?.reloadData()
         
