@@ -377,6 +377,7 @@ extension BaseVC {
             content?.removeFromSuperview()
             content?.transform = CGAffineTransform.identity
         }
+        self.closeKeyboard()
     }
 }
 

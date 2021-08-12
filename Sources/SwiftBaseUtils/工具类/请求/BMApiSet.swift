@@ -52,7 +52,7 @@ public class BMApiTemplete<ValueType> : BMApiSet{
     }
     
     var defaultParam:Dictionary<String, Any> {
-        return ["pfDevice":"iPhone","pfAppVersion":Utils.appCurVersion]
+        return [:]
     }
     
     public init(_ url: String) {

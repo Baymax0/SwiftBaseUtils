@@ -18,7 +18,7 @@ class Hud: NSObject {
 
     /// 显示文字
     static func showText(_ text:String?,in view:UIView! = UIApplication.shared.windows.filter({$0.isKeyWindow}).first!){
-        if text == nil{
+        if text == nil || text?.count == 0{
             return
         }
         if view == nil{

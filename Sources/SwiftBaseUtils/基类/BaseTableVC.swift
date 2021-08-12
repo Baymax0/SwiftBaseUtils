@@ -52,6 +52,16 @@ class BaseTableVC<T:HandyJSON>: BaseVC {
         super.viewDidLoad()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableview?.isScrollEnabled = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        tableview?.isScrollEnabled = false
+    }
+    
     func initTableView(rect:CGRect! ,_ style:UITableView.Style = .plain) -> Void {
         if rect == nil{
             tableview = MyTableView.init(frame: .zero, style: style)
@@ -74,9 +84,6 @@ class BaseTableVC<T:HandyJSON>: BaseVC {
         ignoreAutoAdjustScrollViewInsets(tableview)
         
     }
-    
-    
-    
     
     func initMJHeadView() -> Void {
         let header = MJRefreshNormalHeader()

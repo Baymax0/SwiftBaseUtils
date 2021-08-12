@@ -110,6 +110,13 @@ let KRatio375       = UIScreen.main.bounds.width / 375.0
 
 let noti = NotificationCenter.default
 
+
+#if DEBUG
+var DEBUG = true
+#else
+var DEBUG = false
+#endif
+
 extension NSNotification.Name {
     static let needRelogin = NSNotification.Name("needRelogin")
 }

@@ -7,8 +7,10 @@
 //
 
 
-let network = BMNetwork()
+
 public class HTMLString {}
+
+let network = BMNetwork()
 
 // MARK: -  ---------------------- 实现 network[.接口] 的调用方式------------------------
 public class BMNetwork{
@@ -30,11 +32,6 @@ public class BMNetwork{
         set { }
     }
 }
- 
-
-
-
-
 
 
 public class BMRequester_Json : BMRequester{

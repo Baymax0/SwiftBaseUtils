@@ -136,6 +136,7 @@ class BMBasePicker: UIView {
                 v.backgroundColor = .clear
             }
         }
+        
         UIView.animate(withDuration: 0.2, animations: {
             self.bgMaskView.alpha = 1
             self.contentView.alpha = 1

@@ -35,6 +35,12 @@ extension String{
         return scan.scanInt(&val) && scan.isAtEnd
     }
     
+    var isPurnDouble:Bool {
+        let scan: Scanner = Scanner(string: self)
+        var val:Double = 0
+        return scan.scanDouble(&val) && scan.isAtEnd
+    }
+    
     func  toInt() -> Int{
         if let i = Int(self){
             return i

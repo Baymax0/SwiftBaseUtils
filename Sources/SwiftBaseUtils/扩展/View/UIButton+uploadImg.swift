@@ -101,11 +101,11 @@ extension UIButton{
 
     // 显示等待 加载器
     func showIndicator() -> Void {
+        self.isUserInteractionEnabled = false
         let lab = UILabel()
         lab.text = self.titleLabel?.text
         lab.isHidden = true
         lab.tag = 93338
-        self.isUserInteractionEnabled = false
         self.addSubview(lab)
         self.setTitle("", for: .normal)
 

@@ -39,6 +39,7 @@ extension UIImage{
         UIGraphicsEndImageContext()
         return maskedImage
     }
+    
     // 修复图片旋转
     func fixOrientation() -> UIImage {
         if self.imageOrientation == .up {

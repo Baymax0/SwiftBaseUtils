@@ -23,8 +23,6 @@ extension BMNetwork{
     }
 }
 
-
-
 public class BMRequester_ModelList<T:HandyJSON> : BMRequester{
 
     var api: BMApiTemplete<Array<T>?>

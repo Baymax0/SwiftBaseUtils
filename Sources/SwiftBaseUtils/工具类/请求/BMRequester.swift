@@ -14,8 +14,8 @@ enum RequestError : Int{
     case requestFalid       = -1002
     case serverConnectFalid = -1003
     case noNetwork          = -1009
-    case jsonDeserializeFalid   = -2003
-    case responsDeserializeFalid   = -2004
+    case jsonDeserializeFalid    = -2003
+    case responsDeserializeFalid = -2004
     case noMsg  = -9998
     case unknow = -9999
 
