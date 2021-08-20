@@ -162,7 +162,7 @@ class SwipeController: NSObject {
                 
                 animate(toOffset: targetOffset, withInitialVelocity: normalizedVelocity) { _ in
                     if self.swipeable?.state == .center {
-                        self.reset()
+                        self.swipeReset()
                     }
                 }
                 
@@ -333,7 +333,7 @@ class SwipeController: NSObject {
         swipeable?.addGestureRecognizer(panGestureRecognizer)
     }
     
-    func reset() {
+    func swipeReset() {
         swipeable?.state = .center
         
         swipeable?.actionsView?.removeFromSuperview()
@@ -433,7 +433,7 @@ extension SwipeController: SwipeActionsViewDelegate {
                 }) { [weak self] _ in
                     self?.actionsContainerView?.mask = nil
                     self?.resetSwipe()
-                    self?.reset()
+                    self?.swipeReset()
                 }
             case .reset:
                 self.hideSwipe(animated: true)
@@ -470,13 +470,13 @@ extension SwipeController: SwipeActionsViewDelegate {
         
         if animated {
             animate(toOffset: targetCenter) { complete in
-                self.reset()
+                self.swipeReset()
                 completion?(complete)
             }
         } else {
             actionsContainerView.center = CGPoint(x: targetCenter, y: actionsContainerView.center.y)
             swipeable.actionsView?.visibleWidth = abs(actionsContainerView.frame.minX)
-            reset()
+            swipeReset()
         }
         
         delegate?.swipeController(self, didEndEditingSwipeableFor: actionView.orientation)

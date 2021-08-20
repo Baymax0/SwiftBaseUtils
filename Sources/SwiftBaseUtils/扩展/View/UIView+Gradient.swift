@@ -10,8 +10,8 @@ import Foundation
 extension UIView {
 
     func addGradient(_ color:[UIColor], start:CGPoint, end:CGPoint){
-        var gradientLayer = CAGradientLayer()
-        let cgColors = color.flatMap { return $0.cgColor }
+        let gradientLayer = CAGradientLayer()
+        let cgColors = color.compactMap { return $0.cgColor }
         gradientLayer.colors = cgColors
         gradientLayer.locations = [0.2,1.0]//颜色的分界点
         //开始

@@ -60,10 +60,10 @@ struct ShakePosition  {
     }
     
     static var clockwise: ShakePosition {
-        return ShakePosition(value: 1, direction: .clockwise)
+        return ShakePosition(value: 0.14, direction: .clockwise)
     }
     static var anticlockwise: ShakePosition {
-        return ShakePosition(value: -1, direction: .clockwise)
+        return ShakePosition(value: -0.14, direction: .clockwise)
     }
     
 }

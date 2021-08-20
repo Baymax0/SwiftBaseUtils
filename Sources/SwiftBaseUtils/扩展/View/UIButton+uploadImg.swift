@@ -35,18 +35,32 @@ extension UIButton{
 
     func upload(img:UIImage,showPrograss:Bool,complish:@escaping (_ btn:UIButton?,_ success:Bool,_ url:String?) -> ()){
         network.upload(img, uploading: {[weak self] (progress) in
-            if showPrograss == true{
-                self?.setPrograss(showPrograss, progress)
-            }
+            self?.setPrograss(showPrograss, progress)
         }) {[weak self]  (url) in
-            if showPrograss == true{
-                self?.setPrograss(showPrograss,100)
-            }
+            self?.setPrograss(showPrograss,100)
             if url != nil{
                 complish(self ,true,url)
             }else{
                 self?.setFaild()
                 complish(self,false,url)
+            }
+        }
+    }
+    
+    func ys_upload(img:UIImage,showPrograss:Bool,complish:@escaping (_ btn:UIButton?,_ success:Bool,_ url:String?) -> ()){
+        Api[.upload].upload(img) {[weak self] (progress) in
+            if showPrograss == true{
+                self?.setPrograss(showPrograss, progress)
+            }
+        } finish: {[weak self] (resp) in
+            if showPrograss == true{
+                self?.setPrograss(showPrograss,100)
+            }
+            if resp.url != nil{
+                complish(self ,true,resp.url)
+            }else{
+                self?.setFaild()
+                complish(self,false,nil)
             }
         }
     }
@@ -58,6 +72,7 @@ extension UIButton{
         var progressView = self.viewWithTag(progressTag)
         if progressView == nil {
             progressView = UIView.init(frame: CGRect(x: 0, y: self.frame.size.height-5, width: 15, height: 5))
+            progressView?.cornerRadius = 2.5
             progressView!.backgroundColor = .KBlue
             progressView!.tag = progressTag
             self.addSubview(progressView!)

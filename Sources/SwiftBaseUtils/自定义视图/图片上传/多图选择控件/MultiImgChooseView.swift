@@ -51,10 +51,12 @@ class BMImgItems : UIButton{
     }
 
     func uploadImg(){
-        self.upload(img: self.img!, showPrograss: YES) {[weak self] (btn,success, data) in
+        self.ys_upload(img: self.img!, showPrograss: YES) {[weak self] (btn,success, data) in
             self?.imgUrl = data
         }
     }
+    
+    
 
     //设置为 上传 按钮
     func setUploadImg(){
@@ -84,7 +86,7 @@ class BMImgItems : UIButton{
 
 enum BMUploadBtnPosition {
     case front
-//    case back
+    case back
 }
 
 protocol MultiImgChooseViewDelegate{
@@ -204,9 +206,12 @@ class MultiImgChooseView: UIView {
             btn.tag = index
             btn.deleteBtn.tag = index
             //移动
-            UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.3, animations: {
                 btn.frame = self.getRectWithIndex(index)
             })
+            UIView.animate(withDuration: 0.3, delay: 0.15, options: []) {
+                btn.alpha = 1
+            } completion: { (_) in }
         }
         if let vc = self.delegate{
             vc.multiImgChooseView(imgHadChange: self)
@@ -240,12 +245,16 @@ class MultiImgChooseView: UIView {
     private func addImg(_ img:UIImage) {
         if self.imgBtnArray.count < self.maxNum{
             let btn = self.createBtn()
+            btn.alpha = 0
             btn.setImg(img)
             if self.uploadAtFront == .front{
-                btn.frame = self.getRectWithIndex(1)
-                self.imgBtnArray.insert(btn, at: 1)
+                let index = 1
+                btn.frame = self.getRectWithIndex(index)
+                self.imgBtnArray.insert(btn, at: index)
             }else{
-                
+                let index = self.imgBtnArray.count - 1
+                btn.frame = self.getRectWithIndex(index)
+                self.imgBtnArray.insert(btn, at: index)
             }
         }
         else if self.imgBtnArray.count == self.maxNum{
@@ -266,6 +275,7 @@ class MultiImgChooseView: UIView {
         btn.backgroundColor = .KBGGray
         btn.addTarget(self, action: #selector(MultiImgChooseView.addImgAction(_:)), for: .touchUpInside)
         btn.layer.borderWidth = 0.5
+        btn.cornerRadius = 4
         btn.layer.borderColor = UIColor.KBGGrayLine.cgColor
         self.addSubview(btn)
         return btn
@@ -275,7 +285,7 @@ class MultiImgChooseView: UIView {
     @objc func deleteImgAction(_ btn:UIButton){
         let item = imgBtnArray[btn.tag]
         imgBtnArray.remove(at: btn.tag)
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             item.alpha = 0
         }) { (_) in
             item.removeFromSuperview()
@@ -288,14 +298,13 @@ class MultiImgChooseView: UIView {
                 imgBtnArray.insert(btn, at: 0)
             }
         }
-//        if self.uploadAtFront == .back{
-//            if imgBtnArray.last?.deleteBtn.isHidden != true{
-//                let btn = self.createBtn()
-//                btn.setUploadImg()
-//                imgBtnArray.insert(btn, at: maxNum-1)
-//            }
-//        }
-
+        if self.uploadAtFront == .back{
+            if imgBtnArray.last?.deleteBtn.isHidden != true{
+                let btn = self.createBtn()
+                btn.setUploadImg()
+                imgBtnArray.append(btn)
+            }
+        }
         self.updatePosition()
     }
 

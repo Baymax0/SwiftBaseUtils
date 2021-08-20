@@ -127,8 +127,6 @@ class BaseTableVC<T:HandyJSON>: BaseVC {
     @discardableResult
     func getList(key: BMApiTemplete<Array<T>?>, page:Int, finished:@escaping ()->()) -> DataRequest{
         param["pageNumber"] = page
-        param["pageNo"] = page
-        param["pageSize"] = PageSize
         let count = self.dataArr.count
         return network[key].request(params: param) { (resp) in
             self.listRequestCode = resp!.code

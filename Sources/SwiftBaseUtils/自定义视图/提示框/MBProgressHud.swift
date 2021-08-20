@@ -9,16 +9,6 @@
 import Foundation
 import UIKit
 
-//MARK: - Extension UIView
-extension UIView {
-    func updateUI() {
-        DispatchQueue.main.async { () -> Void in
-            self.setNeedsLayout()
-            self.setNeedsDisplay()
-        }
-    }
-}
-
 //MARK: - MBProgressHUDDelegate
 @objc protocol MBProgressHUDDelegate {
     @objc optional func hudWasHidden(_ hud : MBProgressHUD)
@@ -78,10 +68,17 @@ class MBProgressHUD: UIView {
     fileprivate var minShowTimer : Timer?
     fileprivate var showStarted  : Date?
     
+    func mb_updateUI() {
+        DispatchQueue.main.async { () -> Void in
+            self.setNeedsLayout()
+            self.setNeedsDisplay()
+        }
+    }
+    
     var customView: UIView? {
         didSet {
             self.updateIndicators()
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
@@ -89,19 +86,19 @@ class MBProgressHUD: UIView {
     var mode = MBProgressHUDMode.indeterminate {
         didSet {
             self.updateIndicators()
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     var labelText: String? {
         didSet {
             label.text = labelText
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     var detailsLabelText: String? {
         didSet {
             detailsLabel.text = detailsLabelText
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     var opacity = 0.8
@@ -109,31 +106,31 @@ class MBProgressHUD: UIView {
     var labelFont = UIFont.boldSystemFont(ofSize: kLabelFontSize) {
         didSet {
             label.font = labelFont
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     var labelColor = UIColor.white {
         didSet {
             label.textColor = labelColor
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     var detailsLabelFont = UIFont.boldSystemFont(ofSize: kDetailsLabelFontSize) {
         didSet {
             detailsLabel.font = detailsLabelFont
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     var detailsLabelColor = UIColor.white {
         didSet {
             detailsLabel.textColor = detailsLabelColor
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     var activityIndicatorColor = UIColor.white {
         didSet {
             self.updateIndicators()
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     var xOffset = 0.0
@@ -673,25 +670,25 @@ extension MBProgressHUD {
 class MBRoundProgressView: UIView {
     var progress: Float = 0.0 {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
     var progressTintColor: UIColor {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
     var backgroundTintColor: UIColor {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
     var annular: Bool = false {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
@@ -711,6 +708,13 @@ class MBRoundProgressView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func mb_updateUI() {
+        DispatchQueue.main.async { () -> Void in
+            self.setNeedsLayout()
+            self.setNeedsDisplay()
+        }
     }
     
     override func draw(_ rect: CGRect) {
@@ -769,25 +773,25 @@ class MBRoundProgressView: UIView {
 class MBBarProgressView: UIView {
     var progress: Float {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
     var lineColor: UIColor {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
     var progressRemainingColor: UIColor {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
     var progressColor: UIColor {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
@@ -809,6 +813,13 @@ class MBBarProgressView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func mb_updateUI() {
+        DispatchQueue.main.async { () -> Void in
+            self.setNeedsLayout()
+            self.setNeedsDisplay()
+        }
     }
     
     override func draw(_ rect: CGRect) {
@@ -907,7 +918,7 @@ class MBIndeterminatedRoundProgressView: UIView {
     
     var lineColor: UIColor = UIColor.white {
         didSet {
-            self.updateUI()
+            self.mb_updateUI()
         }
     }
     
@@ -926,6 +937,13 @@ class MBIndeterminatedRoundProgressView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func mb_updateUI() {
+        DispatchQueue.main.async { () -> Void in
+            self.setNeedsLayout()
+            self.setNeedsDisplay()
+        }
     }
     
     fileprivate func setupAndStartRotatingCircle() {

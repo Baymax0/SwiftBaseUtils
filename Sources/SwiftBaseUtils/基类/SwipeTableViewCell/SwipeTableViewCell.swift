@@ -81,7 +81,7 @@ open class SwipeTableViewCell: UITableViewCell {
     override open func prepareForReuse() {
         super.prepareForReuse()
         
-        reset()
+        swipeReset()
         resetSelectedState()
     }
     
@@ -164,8 +164,8 @@ open class SwipeTableViewCell: UITableViewCell {
         }
     }
     
-    func reset() {
-        swipeController.reset()
+    func swipeReset() {
+        swipeController.swipeReset()
         clipsToBounds = false
     }
     

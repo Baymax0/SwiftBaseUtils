@@ -363,6 +363,7 @@ extension BaseVC {
         UIView.animate(withDuration: 0.3) {
             self.blurMask.alpha = 0
         } completion: { (_) in
+            self.blurMask.removeFromSuperview()
             self.maskView.removeFromSuperview()
         }
 

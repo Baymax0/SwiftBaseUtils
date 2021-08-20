@@ -217,7 +217,7 @@ extension UIView{
     }
     
     //重置状态
-    func reset(){
+    func boomReset(){
         layer.opacity = 1
     }
     

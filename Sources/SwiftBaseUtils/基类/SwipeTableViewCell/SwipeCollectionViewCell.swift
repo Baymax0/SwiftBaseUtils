@@ -101,7 +101,7 @@ open class SwipeCollectionViewCell: UICollectionViewCell {
     override open func prepareForReuse() {
         super.prepareForReuse()
         
-        reset()
+        swipeReset()
         resetSelectedState()
     }
     
@@ -130,7 +130,7 @@ open class SwipeCollectionViewCell: UICollectionViewCell {
         super.willMove(toWindow: newWindow)
         
         if newWindow == nil {
-            reset()
+            swipeReset()
         }
     }
     
@@ -191,9 +191,9 @@ open class SwipeCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func reset() {
+    func swipeReset() {
         contentView.clipsToBounds = false
-        swipeController.reset()
+        swipeController.swipeReset()
         collectionView?.setGestureEnabled(true)
     }
     
