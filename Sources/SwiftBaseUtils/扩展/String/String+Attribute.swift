@@ -48,7 +48,7 @@ extension String {
 }
 
 extension NSMutableAttributedString {
-    func lineSpace(_ lineSpace:CGFloat) -> NSMutableAttributedString{
+    func lineSpace(_ lineSpace:CGFloat = 5) -> NSMutableAttributedString{
         var arr : [NSAttributedString.Key:Any] = [:]
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = lineSpace
