@@ -50,13 +50,8 @@ class BMImgItems : UIButton{
         uploadImg()
     }
 
-    func uploadImg(){
-        self.ys_upload(img: self.img!, showPrograss: YES) {[weak self] (btn,success, data) in
-            self?.imgUrl = data
-        }
-    }
-    
-    
+    // 在MultiImgChooseView.delegate.setNewImg(itemView view:BMImgItems) 方法中上传
+    func uploadImg(){ }
 
     //设置为 上传 按钮
     func setUploadImg(){
@@ -91,6 +86,7 @@ enum BMUploadBtnPosition {
 
 protocol MultiImgChooseViewDelegate{
     func multiImgChooseView(imgHadChange view:MultiImgChooseView)
+    func setNewImg(itemView view:BMImgItems)
 }
 
 class MultiImgChooseView: UIView {
@@ -152,7 +148,6 @@ class MultiImgChooseView: UIView {
     var imgBtnArray = Array<BMImgItems>()
 
     lazy var uploadBtn: BMImgItems = BMImgItems(width: self.imgW)
-
 
     //初始化的时候 调用
     func reload(imgURLArray:Array<String>?) {
@@ -247,6 +242,9 @@ class MultiImgChooseView: UIView {
             let btn = self.createBtn()
             btn.alpha = 0
             btn.setImg(img)
+            if let vc = self.delegate{
+                vc.setNewImg(itemView: btn)
+            }
             if self.uploadAtFront == .front{
                 let index = 1
                 btn.frame = self.getRectWithIndex(index)
@@ -265,6 +263,9 @@ class MultiImgChooseView: UIView {
                 btn = self.imgBtnArray[self.maxNum-1]
             }
             btn?.setImg(img)
+            if let vc = self.delegate{
+                vc.setNewImg(itemView: btn!)
+            }
         }
     }
 
@@ -307,10 +308,6 @@ class MultiImgChooseView: UIView {
         }
         self.updatePosition()
     }
-
-
-
-
 
 
 }

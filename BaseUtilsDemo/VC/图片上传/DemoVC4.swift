@@ -73,6 +73,11 @@ class DemoVC4: BaseVC {
 
 // 回调动态修改高度
 extension DemoVC4 :MultiImgChooseViewDelegate{
+    func setNewImg(itemView view: BMImgItems) {
+//        let img = view.img
+        print("upload img")
+    }
+    
     func multiImgChooseView(imgHadChange view: MultiImgChooseView) {
         var row = view.imgBtnArray.count / view.numEachRow
         if view.imgBtnArray.count % view.numEachRow > 0 {
@@ -86,4 +91,6 @@ extension DemoVC4 :MultiImgChooseViewDelegate{
             self.view.layoutIfNeeded()
         }
     }
+    
+    
 }

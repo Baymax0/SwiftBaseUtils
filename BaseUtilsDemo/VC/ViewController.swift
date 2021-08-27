@@ -9,8 +9,11 @@
 import UIKit
 import Kingfisher
 import Hero
+import HandyJSON
 
-class ItemModel {
+class ItemModel: HandyJSON {
+    required init() {}
+    
     var title: String! = ""
     var desc: String! = ""
     
@@ -21,7 +24,7 @@ class ItemModel {
 }
 
 
-class ViewController: BaseTableVC {
+class ViewController: BaseTableVC<ItemModel> {
     
     override func viewDidLoad() {
         self.hideNav = true
@@ -39,6 +42,7 @@ class ViewController: BaseTableVC {
             ItemModel("4、图片预览","图片点击放大预览"),
             ItemModel("5、按钮动画","点赞按钮点击效果"),
             ItemModel("6、CollectionKit",""),
+            ItemModel("7、属性修饰器","@propertyWrapper的使用，批量设置GetSet方法"),
         ]
         self.tableview?.reloadData()
     }
@@ -59,42 +63,34 @@ extension ViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = ViewControllerCell.cellFromNib(with: tableView)
         cell.backgroundColor = .white
-        if let m = self.dataArr[indexPath.row] as? ItemModel{
-            cell.titleLab.text = m.title
-            cell.detailLab.text = m.desc
-        }
+        let m = self.dataArr[indexPath.row]
+        cell.titleLab.text = m.title
+        cell.detailLab.text = m.desc
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var vc:BaseVC?
         if indexPath.row == 0{
-            let vc = MaskViewUsedVC()
-            self.pushViewController(vc)
-        }
+            vc = MaskViewUsedVC() }
         if indexPath.row == 1{
-            let vc = AnimTableVC()
-            self.pushViewController(vc)
-        }
+            vc = AnimTableVC() }
         if indexPath.row == 2{
-            let vc = PickerVC()
-            self.pushViewController(vc)
-        }
+            vc = PickerVC() }
         if indexPath.row == 3{
-            let vc = DemoVC1()
-            self.pushViewController(vc)
-        }
+            vc = DemoVC1() }
         if indexPath.row == 4{
-            let vc = BtnClickAnimVC()
-            self.pushViewController(vc)
-        }
+            vc = BtnClickAnimVC() }
         if indexPath.row == 5{
-            let vc = CollectionViewVC()
-            self.pushViewController(vc)
+            vc = CollectionViewVC() }
+        if indexPath.row == 6{
+            vc = PropertyBaseVC() }
+        
+        
+        if vc != nil{
+            self.pushViewController(vc!)
         }
-        
-        
     }
-    
 }
 
 

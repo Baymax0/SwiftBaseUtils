@@ -47,24 +47,6 @@ extension UIButton{
         }
     }
     
-    func ys_upload(img:UIImage,showPrograss:Bool,complish:@escaping (_ btn:UIButton?,_ success:Bool,_ url:String?) -> ()){
-        Api[.upload].upload(img) {[weak self] (progress) in
-            if showPrograss == true{
-                self?.setPrograss(showPrograss, progress)
-            }
-        } finish: {[weak self] (resp) in
-            if showPrograss == true{
-                self?.setPrograss(showPrograss,100)
-            }
-            if resp.url != nil{
-                complish(self ,true,resp.url)
-            }else{
-                self?.setFaild()
-                complish(self,false,nil)
-            }
-        }
-    }
-
     func setPrograss(_ show:Bool, _ prograss:Double){
         if !show {
             return
