@@ -21,6 +21,10 @@ enum NumberFormateType:String{
 
     // 单位
     case fileSize   // 带单位后缀 22MB 4.123GB
+    // 时间
+    case minute   // 分钟 结果除以60
+    case hour     // 分钟 结果除以60*60
+    case day      // 分钟 结果除以60*60*24
 }
 
 protocol BMNumberFormate {
@@ -40,6 +44,18 @@ extension Double : BMNumberFormate{
         var fl = self
         var result = "" //结果
         var suffix = ""   //后缀
+        
+        for t in formates{
+            if t == .minute{
+                fl = fl / 60
+            }
+            if t == .hour{
+                fl = fl / 3600
+            }
+            if t == .day{
+                fl = fl / (3600 * 24)
+            }
+        }
         
         for t in formates{
             if t == .fileSize{
