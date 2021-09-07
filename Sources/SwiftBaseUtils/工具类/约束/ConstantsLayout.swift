@@ -77,6 +77,16 @@ extension UIView: ConstraintsCompatible{}
 
 extension Baymax where Base: UIView{
     
+    /// add到父视图、 添加约束
+    @discardableResult
+    func addConstraints(superView:UIView ,constraints:[EasyConstraint]) -> [NSLayoutConstraint]{
+        if base.superview != nil {
+            base.removeFromSuperview()
+        }
+        superView.addSubview(base)
+        return self.addConstraints(constraints)
+    }
+    
     /// 添加约束，在add到父视图后调用
     @discardableResult
     func addConstraints(_ constraints:[EasyConstraint]) -> [NSLayoutConstraint]{

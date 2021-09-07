@@ -15,7 +15,7 @@ struct BMAlertView {
     }
     
     /// 确认 & 取消 & 确认回调的提示框
-    static func showConfirm(title: String?, message: String?, okTitle:String = "确定", cancelTitle:String = "确定",handle: @escaping (() -> ())){
+    static func showConfirm(title: String?, message: String?, okTitle:String = "确定", cancelTitle:String = "取消",handle: @escaping (() -> ())){
         let alert = AlertController(title: title, message: message)
         alert.addAction(AlertAction(title: cancelTitle, style: .preferred))
         alert.addAction(AlertAction(title: okTitle, style: .normal, handler: { (action) in
@@ -49,25 +49,10 @@ struct BMAlertView {
         alert.present()
     }
     
-    
+    static func showCenterCustomView(_ v:UIView, w:CGFloat, h:CGFloat) -> BMCustomAlertViewController{
+        let alert = BMCustomAlertViewController(v, w: w, h: h)
+        alert.present()
+        return alert
+    }
 }
 
-//private func showAlertView(_ title:String, _ msg:String, complish: (() -> ())? = nil, cancel: (() -> ())? = nil){
-//    UIView.animate(withDuration: 0.1) {
-//        let alertVC = UIAlertController(title: title, message: msg, preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "确认", style: .default, handler: { (action) in
-//            complish?()
-//        })
-//        let cancelAction = UIAlertAction(title: "取消", style: .cancel , handler:{ (action) in
-//            cancel?()
-//        })
-//        alertVC.addAction(cancelAction)
-//        alertVC.addAction(okAction)
-//        self.present(alertVC, animated: YES, completion: nil)
-//    }
-//}
-//
-//func showComfirm(_ title:String, _ msg:String, cancel:(()->())? = nil, complish:(()->())? = nil){
-//    self.showAlertView(title, msg, complish: complish, cancel: cancel)
-//
-//}

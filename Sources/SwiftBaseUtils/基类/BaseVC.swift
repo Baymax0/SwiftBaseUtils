@@ -12,7 +12,7 @@ import IQKeyboardManagerSwift
 protocol CustomBottomAlertViewDelagate{
     func willAppear()
     func didAppear()
-    func disappear()
+    func willDisappear()
 }
 
 // 页面离开的方式
@@ -49,14 +49,6 @@ class BaseVC: UIViewController {
     
     
     // MARK:  ----------- 功能View -----------
-    // 遮照背景视图
-    var maskView = UIView()
-    // 弹出框使用的 灰色背景遮照
-    var blurMask: UIButton = {
-        let btn = UIButton(frame: .init(x: 0, y: 0, width: KScreenWidth, height: KScreenHeight))
-        btn.backgroundColor = UIColor.maskView
-        return btn
-    }()
 
     var window:UIWindow! {
         return UIApplication.shared.windows.filter{$0.isKeyWindow}.first
@@ -86,10 +78,9 @@ class BaseVC: UIViewController {
         return Date().timeIntervalSince(lastLoadTime) > (reloadIntervalTime)}
     
     /// 上次动画时间，用于cell列表刷新等 有先后顺序的动画
-    private var lastCellDisplayTimeInterval: TimeInterval = Date.timeIntervalSinceReferenceDate
+    var lastCellDisplayTimeInterval: TimeInterval = Date.timeIntervalSinceReferenceDate
     
     
-    private var alertBottomView:CustomBottomAlertViewDelagate?
     
     //MARK: ----------- vc生命周期 -----------
     override func viewDidLoad() {
@@ -202,233 +193,20 @@ class BaseVC: UIViewController {
         }
         lastCellDisplayTimeInterval = now + delay
     }
-}
-
-
-// MARK:  提示框
-extension BaseVC {
-    func showMask(){
-        if maskView.superview == nil{
-            self.window.addSubview(maskView)
-            maskView.bm.addConstraints([.fill])
-        }
-    }
     
-    /// 居中显示View
-    func showMaskWithViewInCenter(_ content:UIView){
-        maskView.removeFromSuperview()
-        self.window.addSubview(maskView)
-        maskView.bm.addConstraints([.fill])
-
-        blurMask.removeFromSuperview()
-        maskView.addSubview(blurMask)
-        blurMask.bm.addConstraints([.fill])
-
-        blurMask.tag = 0
-        blurMask.addTarget(self, action: #selector(hideMaskView), for: .touchUpInside)
-
-        content.removeFromSuperview()
-        maskView.addSubview(content)//把view的宽高布局转为约束
-        content.bm.addConstraints([.w(content.w), .h(content.h), .center])
-        
-        //animation
-        blurMask.alpha = 0;
-        content.alpha = 0.5 //透明度渐变不带弹性
-        UIView.animate(withDuration: 0.2, animations: {
-            content.alpha = 1
-            self.blurMask.alpha = 1
-        })
-        
-        content.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5) //缩放带弹性
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
-            content.transform = CGAffineTransform.identity
-        }) { (_) in}
+    //MARK: ------------ BaseVC+CustomAlert ------------
+    // 遮照背景视图
+    var maskView: UIView!
+    // 弹出框内容试图
+    var alertContentBtn: UIButton!
+    var alertContentBtnBottom:NSLayoutConstraint!
+    var alertBottomView:CustomBottomAlertViewDelagate?
+    var isMaskViewShowed:Bool{
+        if maskView == nil { return false }
+        if maskView.superview == nil { return false }
+        return true
     }
-    
-    /// 居下显示View
-    func showMaskWithViewAtBottom(_ content:UIView){
-        maskView.removeFromSuperview()
-        self.window.addSubview(maskView)
-        maskView.bm.addConstraints([.fill])
 
-        blurMask.removeFromSuperview()
-        maskView.addSubview(blurMask)
-        blurMask.bm.addConstraints([.fill])
-        
-        blurMask.tag = 1;
-        blurMask.addTarget(self, action: #selector(hideMaskView), for: .touchUpInside)
-
-        content.removeFromSuperview()
-        maskView.addSubview(content)//把view的宽高布局转为约束
-        content.bm.addConstraints([.w(content.w), .h(content.h), .center_X(0), .bottom(40)])
-        
-        //animation
-        blurMask.alpha = 0;
-        content.alpha = 0.5 //透明度渐变不带弹性
-        UIView.animate(withDuration: 0.2, animations: {
-            content.alpha = 1
-            self.blurMask.alpha = 1
-        })
-        
-        content.transform = CGAffineTransform.init(translationX: 0, y: 100) //缩放带弹性
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
-            content.transform = CGAffineTransform.identity
-        }) { (_) in}
-    }
-    
-    /// 居下显示View
-    func showMaskWithViewAtBottom_full(_ content:UIView){
-        maskView.removeFromSuperview()
-        self.window.addSubview(maskView)
-        maskView.bm.addConstraints([.fill])
-
-        blurMask.removeFromSuperview()
-        maskView.addSubview(blurMask)
-        blurMask.bm.addConstraints([.fill])
-        
-        blurMask.tag = 1;
-        blurMask.addTarget(self, action: #selector(hideMaskView), for: .touchUpInside)
-
-        content.removeFromSuperview()
-        maskView.addSubview(content)//把view的宽高布局转为约束
-        content.bm.addConstraints([.w(content.w), .h(content.h), .center_X(0), .bottom(0)])
-        
-        self.alertBottomView = content as? CustomBottomAlertViewDelagate
-        if let v = self.alertBottomView{
-            v.willAppear()
-        }
-        
-        //animation
-        blurMask.alpha = 0;
-//        content.alpha = 0.5 //透明度渐变不带弹性
-        UIView.animate(withDuration: 0.2, animations: {
-//            content.alpha = 1
-            self.blurMask.alpha = 1
-        })
-        
-        content.alpha = 1
-
-        content.transform = CGAffineTransform.init(translationX: 0, y: content.h)
-        let time:Double = Double(content.h) / 2100
-        UIView.animate(withDuration: time, delay: 0, options: .curveEaseOut) {
-            content.transform = CGAffineTransform.identity
-        } completion: { (_) in
-            if let v = self.alertBottomView{
-                v.didAppear()
-            }
-        }
-    }
-    
-    /// 自定义位置显示View
-    func showMaskWithView(_ content:UIView, from:CGRect,to:CGRect){
-        maskView.removeFromSuperview()
-        self.window.addSubview(maskView)
-        maskView.bm.addConstraints([.fill])
-
-        blurMask.removeFromSuperview()
-        maskView.addSubview(blurMask)
-        blurMask.bm.addConstraints([.fill])
-        
-        blurMask.tag = 1;
-        blurMask.addTarget(self, action: #selector(hideMaskView), for: .touchUpInside)
-
-        content.removeFromSuperview()
-        maskView.addSubview(content)//把view的宽高布局转为约束
-        content.frame = from
-        
-        //animation
-        blurMask.alpha = 0;
-        content.alpha = 0.5 //透明度渐变不带弹性
-        UIView.animate(withDuration: 0.2, animations: {
-            content.alpha = 1
-            self.blurMask.alpha = 1
-        })
-        
-//        content.transform = CGAffineTransform.init(translationX: 0, y: 50) //缩放带弹性
-        UIView.animate(withDuration: 0.25, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
-            content.frame = to
-        }) { (_) in}
-    }
-    
-    /// 隐藏
-    @objc func hideMaskView() -> Void {
-        let views = maskView.subviews
-        let content = views.last//提示框
-        
-        if let v = self.alertBottomView{
-            v.disappear()
-            self.alertBottomView = nil
-        }
-        
-        UIView.animate(withDuration: 0.3) {
-            self.blurMask.alpha = 0
-        } completion: { (_) in
-            self.blurMask.removeFromSuperview()
-            self.maskView.removeFromSuperview()
-        }
-
-        UIView.animate(withDuration: 0.15, animations: {
-            content?.alpha = 0
-            if self.blurMask.tag == 1{
-                content?.transform = CGAffineTransform.init(translationX: 0, y: 80)
-            }else{
-                content?.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
-            }
-        }) { (_) in
-            content?.removeFromSuperview()
-            content?.transform = CGAffineTransform.identity
-        }
-        self.closeKeyboard()
-    }
-}
-
-
-// MARK:  页面导航
-extension BaseVC {
-    class func fromStoryboard(_ identify: String? = nil) -> BaseVC {
-        let id = identify ?? String(describing: type(of:self.init()))
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: id) as! BaseVC
-        vc.modalPresentationStyle = .fullScreen
-        return vc
-    }
-    
-    func pushViewController(_ vc:UIViewController, _ animation:Bool = true) {
-        self.dismissType = .push
-        if let n = self.navigationController{
-            n.pushViewController(vc, animated: animation)
-        }else{
-            self.present(vc, animated: animation, completion: nil)
-        }
-    }
-    
-    func pushViewControllerWithHero(_ vc:BaseVC) {
-        self.dismissType = .push
-        if let n = self.navigationController{
-            n.hero.isEnabled = true
-            n.pushViewController(vc, animated: true)
-            vc.hero.isEnabled = true
-        }
-    }
-    
-    func pop(_ animation:Bool = true) -> Void{
-        self.dismissType = .pop
-        if let n = self.navigationController{
-            n.popViewController(animated: animation)
-        }else{
-            self.dismiss(animated: animation, completion: nil)
-        }
-    }
-    
-    /// -1 = 前一个，
-    func pop(index:Int) -> Void{
-        if let arr = self.navigationController?.children {
-            let newIndex = arr.count - 1 + index
-            let vc = arr[newIndex]
-            self.navigationController?.popToViewController(vc, animated: YES)
-            self.dismissType = .pop
-        }
-    }
 }
 
 
