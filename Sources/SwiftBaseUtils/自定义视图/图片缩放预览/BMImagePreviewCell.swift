@@ -26,7 +26,6 @@ class BMImagePreviewCell: UICollectionViewCell {
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        print("init cell")
         setupUI()
     }
     
@@ -41,6 +40,7 @@ class BMImagePreviewCell: UICollectionViewCell {
             self.scrollView.showsVerticalScrollIndicator = false
             self.scrollView.delaysContentTouches = false
             self.scrollView.alwaysBounceVertical = true
+            self.scrollView.alwaysBounceHorizontal = true
             self.scrollView.bm.add(toView: self, withConstraints: [.fill])
             if #available(iOS 11.0, *) {
                 self.scrollView.contentInsetAdjustmentBehavior = .never
@@ -192,8 +192,8 @@ extension BMImagePreviewCell: UIScrollViewDelegate {
     }
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        guard scrollView.zoomScale == 1 else{ return }
         isDraging = false
+        guard scrollView.zoomScale == 1 else{ return }
         if let block = contentSCScrolled{
             block(self,scrollView.contentOffset.y,true)
         }

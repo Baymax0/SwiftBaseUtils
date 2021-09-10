@@ -59,7 +59,6 @@ class QRCodeManager: NSObject {
             filter?.setValue(qrCode.data(using: .utf8), forKey: "inputMessage")
             guard let image = filter?.outputImage else { return }
             
-            
             //缩放
             let ciextent: CGRect = image.extent.integral
             let context = CIContext(options: nil)  //创建基于GPU的CIContext对象,性能和效果更好

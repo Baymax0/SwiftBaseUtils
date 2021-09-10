@@ -68,13 +68,13 @@ class BMPreviewView: UIView{
         naviLab.frame = CGRect(x: 0, y: safeArea_Top, width: KScreenWidth, height: 44)
         naviLab.textAlignment = .center
         naviLab.textColor = .white
+        naviLab.font = .boldSystemFont(ofSize: 16)
         navi.addSubview(naviLab)
         
         // 延后执行
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.05) {
             let x = CGFloat(self.currentPageIndex) * (KScreenWidth + BMPreviewView.colItemSpacing)
             self.collectionView.setContentOffset(CGPoint(x: x, y: 0), animated: false)
-            print(self.collectionView.contentSize)
         }
     }
     
@@ -136,31 +136,33 @@ extension BMPreviewView: UICollectionViewDataSource, UICollectionViewDelegateFlo
         let str = self.imgDatas[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BMImagePreviewCell", for: indexPath) as? BMImagePreviewCell
 
-        cell?.imageView.kf.setImage(with: str.resource,completionHandler: { (_, _, _, _) in
+        cell?.imageView.kf.setImage(with: str.resource,completionHandler: { (_) in
             cell?.resetSubViewSize()
         })
         cell?.backgroundColor = .clear
         cell?.singleTapBlock = { [weak self] in
             self?.hide()
         }
-        cell?.contentSCScrolled = { [weak self] (cell, y, finished) in
-            self?.backPrecent(cell: cell, y: y,finished)
+        cell?.contentSCScrolled = { [weak self] (cell, y, drogFinished) in
+            self?.backPrecent(cell: cell, y: y,drogFinished)
         }
         return cell!
     }
     
-    func backPrecent(cell:BMImagePreviewCell, y: CGFloat,_ finish:Bool){
+    func backPrecent(cell:BMImagePreviewCell, y: CGFloat,_ drogFinished:Bool){
         let absY = y < 0 ? -y : y
-        let precent = 1 - absY / 400
+        var precent = 1 - absY / 400
+        let minScale:CGFloat = 0.75
+        precent = max(precent,minScale)
         
-        if finish == false{
+        if drogFinished == false{
             if willDismiss == false{
                 self.bgView.alpha = precent
                 cell.imageView.transform = .init(scaleX: precent, y: precent)
+                setNaviHide(true)
             }
-            setNaviHide(true)
         }else{
-            if absY > 80{
+            if precent == minScale{
                 willDismiss = true
                 UIView.animate(withDuration: 0.25) {
                     self.bgView.alpha = 0
@@ -196,7 +198,6 @@ extension BMPreviewView: UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentX = scrollView.contentOffset.x
-        print(currentX)
         if currentX < frontX{
             setPage(currentPageIndex - 1)
         }
@@ -204,8 +205,6 @@ extension BMPreviewView: UICollectionViewDataSource, UICollectionViewDelegateFlo
             setPage(currentPageIndex + 1)
         }
     }
-    
-    
 }
 
 

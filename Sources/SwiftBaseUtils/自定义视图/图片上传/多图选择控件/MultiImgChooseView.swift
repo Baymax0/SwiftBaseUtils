@@ -213,17 +213,21 @@ class MultiImgChooseView: UIView {
         }
     }
 
-
     private func getRectWithIndex(_ index: Int) -> CGRect {
         let x = CGFloat(index % numEachRow)*(imgBlock+imgW)
         let y = CGFloat(index / numEachRow)*(imgBlock+imgW)
         return CGRect(x: x, y: y, width: self.imgW, height: self.imgW)
     }
+    
     // 添加图片按钮事件
     @objc private func addImgAction(_ btn:BMImgItems){
+        // 预览图片
         if btn.deleteBtn.isHidden != true{
+            let view = BMPreviewView.createWith(imgUrlArray,index: btn.tag)
+            view.show()
             return
         }
+        // 添加图片
         if let vc = delegate as? UIViewController{
             let num = maxNum - imgBtnArray.count + 1
             vc.chooseMutiImg(num, {[weak self] (imgs) in
