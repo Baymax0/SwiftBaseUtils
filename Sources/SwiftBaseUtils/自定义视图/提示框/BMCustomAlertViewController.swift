@@ -26,13 +26,13 @@ public final class BMCustomAlertViewController: UIViewController {
 
     func initUI(){
         dismissView = UIView()
-        dismissView.bm.addConstraints(superView: self.view, constraints:[.fill])
+        dismissView.bm.add(toView: self.view, withConstraints:[.fill])
         dismissView.backgroundColor =  UIColor(white: 0, alpha: 0.2)
         let tap = UITapGestureRecognizer(target: self, action: #selector(backAction))
         self.view.addGestureRecognizer(tap)
         
         contentView = UIView()
-        contentViewBottom = dismissView.bm.addConstraints(superView: self.view, constraints:[.fill]).bm_object(2)//拿到距下距离
+        contentViewBottom = dismissView.bm.add(toView: self.view, withConstraints:[.fill]).bm_object(2)//拿到距下距离
         
         NotificationCenter.default
             .addObserver(self, selector: #selector(self.keyboardChange),

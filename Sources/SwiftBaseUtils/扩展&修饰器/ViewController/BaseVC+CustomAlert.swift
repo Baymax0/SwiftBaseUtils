@@ -65,7 +65,7 @@ extension BaseVC {
         if listenTorKeyboard{
             self.listenForKeyboardChanges()
         }
-        content.bm.addConstraints(superView: alertContentBtn, constraints: [.w(content.w), .h(content.h), .center])
+        content.bm.add(toView: alertContentBtn, withConstraints: [.w(content.w), .h(content.h), .center])
         content.layoutIfNeeded()
         alertContentBtn.layoutIfNeeded()
         //animation

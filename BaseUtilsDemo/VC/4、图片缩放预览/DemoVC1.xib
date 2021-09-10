@@ -1,34 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DemoVC1" customModule="BaseUtilsDemo" customModuleProvider="target">
             <connections>
+                <outlet property="imgBtn1" destination="0vj-TF-UXT" id="r1u-1z-bzR"/>
+                <outlet property="imgBtn2" destination="ATg-cD-FVA" id="eSp-aA-9EU"/>
+                <outlet property="imgBtn3" destination="IyG-fZ-jFC" id="QE4-yS-cYy"/>
                 <outlet property="imgView" destination="EuD-ns-Vjs" id="qKc-gy-uVC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp.png" translatesAutoresizingMaskIntoConstraints="NO" id="EuD-ns-Vjs">
                     <rect key="frame" x="87" y="290" width="240" height="228"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="228" id="WPc-yM-caG"/>
-                        <constraint firstAttribute="width" constant="240" id="q12-J4-KWH"/>
+                        <constraint firstAttribute="height" constant="120" id="WPc-yM-caG"/>
+                        <constraint firstAttribute="width" constant="120" id="q12-J4-KWH"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REg-BR-Anm">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REg-BR-Anm">
                     <rect key="frame" x="87" y="290" width="240" height="228"/>
                     <connections>
                         <action selector="clickAction:" destination="-1" eventType="touchUpInside" id="7RI-dL-vLQ"/>
@@ -43,21 +44,53 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="g8f-zH-CfP">
+                    <rect key="frame" x="20" y="567" width="374" height="110"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0vj-TF-UXT">
+                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="mutiImgClickAction:" destination="-1" eventType="touchUpInside" id="1T6-ZU-xrg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATg-cD-FVA">
+                            <rect key="frame" x="164" y="40" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="mutiImgClickAction:" destination="-1" eventType="touchUpInside" id="A9W-Qi-8Xg"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IyG-fZ-jFC">
+                            <rect key="frame" x="164" y="40" width="46" height="30"/>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="mutiImgClickAction:" destination="-1" eventType="touchUpInside" id="dZt-ep-c9C"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="Qci-Ur-ZFk"/>
+                    </constraints>
+                </stackView>
             </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VE9-0g-y7m" secondAttribute="trailing" id="4zP-Vo-ArH"/>
+                <constraint firstAttribute="trailing" secondItem="g8f-zH-CfP" secondAttribute="trailing" constant="12" id="7yp-uK-iPh"/>
                 <constraint firstItem="EuD-ns-Vjs" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Ain-DD-zcH"/>
                 <constraint firstItem="REg-BR-Anm" firstAttribute="bottom" secondItem="EuD-ns-Vjs" secondAttribute="bottom" id="Asl-Cz-lSp"/>
                 <constraint firstItem="REg-BR-Anm" firstAttribute="trailing" secondItem="EuD-ns-Vjs" secondAttribute="trailing" id="EhK-GY-tjQ"/>
+                <constraint firstItem="g8f-zH-CfP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="GUZ-XD-KIB"/>
                 <constraint firstItem="REg-BR-Anm" firstAttribute="leading" secondItem="EuD-ns-Vjs" secondAttribute="leading" id="Kr9-ah-fGv"/>
                 <constraint firstItem="REg-BR-Anm" firstAttribute="top" secondItem="EuD-ns-Vjs" secondAttribute="top" id="fAc-uA-Q2S"/>
+                <constraint firstItem="g8f-zH-CfP" firstAttribute="top" secondItem="EuD-ns-Vjs" secondAttribute="bottom" constant="30" id="pc3-Vx-kaM"/>
                 <constraint firstItem="VE9-0g-y7m" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qaP-XP-Myv"/>
                 <constraint firstItem="EuD-ns-Vjs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vQr-Hw-fgX"/>
                 <constraint firstItem="VE9-0g-y7m" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="y4O-wi-YsP"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
         </view>
     </objects>

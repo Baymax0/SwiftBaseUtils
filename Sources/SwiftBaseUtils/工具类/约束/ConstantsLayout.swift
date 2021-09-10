@@ -79,11 +79,11 @@ extension Baymax where Base: UIView{
     
     /// add到父视图、 添加约束
     @discardableResult
-    func addConstraints(superView:UIView ,constraints:[EasyConstraint]) -> [NSLayoutConstraint]{
+    func add(toView:UIView ,withConstraints constraints:[EasyConstraint]) -> [NSLayoutConstraint]{
         if base.superview != nil {
             base.removeFromSuperview()
         }
-        superView.addSubview(base)
+        toView.addSubview(base)
         return self.addConstraints(constraints)
     }
     

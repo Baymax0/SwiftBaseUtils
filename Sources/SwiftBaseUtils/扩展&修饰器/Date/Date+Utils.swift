@@ -62,6 +62,11 @@ extension Date {
         let days = Int(interval/86400) // 24*60*60
         let weekday = ((days + 4)%7+7)%7
         return weekday == 0 ? 7 : weekday
+        
+//        guard let calendar = NSCalendar(identifier: NSCalendar.Identifier.gregorian) else { return 1 }
+//        let components = calendar.components([.weekday], from: self)
+//        let weekday = components.weekday!
+//        return weekday
     }
     
     // 是否是今天
@@ -86,11 +91,8 @@ extension Date {
         return Date.init(timeIntervalSince1970: t)
     }
     ///返回星期几
-    func getweekDay() ->String{
-        let interval = Int(self.timeIntervalSince1970) + NSTimeZone.local.secondsFromGMT()
-        let days = Int(interval/86400) // 24*60*60
-        let weekday = ((days + 4)%7+7)%7
-        let comps = weekday == 0 ? 7 : weekday
+    func getweekDayString() ->String{
+        let comps = self.weekend
         var str = ""
         if comps == 1 {
             str = "周一"

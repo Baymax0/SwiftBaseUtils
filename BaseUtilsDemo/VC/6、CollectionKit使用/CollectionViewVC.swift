@@ -23,11 +23,11 @@ class CollectionViewVC: BaseVC{
     override func viewDidLoad() {
         self.view.backgroundColor = .KBGGray
         
-        collectionView = CollectionView(frame: .init(x: 0, y: 100, width: KScreenWidth, height: 400))
+        collectionView = CollectionView(frame: .init(x: 0, y: 200, width: KScreenWidth, height: 100))
         self.view.addSubview(collectionView)
         
         // 数据数组
-        dataSource = ArrayDataSource(data: [33,13, 32,25])
+        dataSource = ArrayDataSource(data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
         // cell内容
         viewSource = ClosureViewSource(viewUpdater: { (view: UILabel, data: Int, index: Int) in
             view.backgroundColor = #colorLiteral(red: 1, green: 0.8451469541, blue: 0.861125946, alpha: 1)
@@ -37,13 +37,14 @@ class CollectionViewVC: BaseVC{
             view.textAlignment = .center
             view.font = .boldSystemFont(ofSize: 19)
             view.textColor = #colorLiteral(red: 0.8415004611, green: 0.2267866731, blue: 0.2883485854, alpha: 1)
+            print("show \(index)")
         })
         // cell尺寸
         let sizeSource = { (index: Int, data: Int, collectionSize: CGSize) -> CGSize in
             if index < 4{
-                return CGSize(width: 50, height: 50)
+                return CGSize(width: KScreenWidth - 80, height: 90)
             }else{
-                return CGSize(width: 80, height: 50)
+                return CGSize(width: KScreenWidth - 80, height: 90)
             }
         }
         provider = BasicProvider(dataSource: dataSource, viewSource: viewSource, sizeSource: sizeSource)
@@ -51,6 +52,7 @@ class CollectionViewVC: BaseVC{
         provider.layout = FlowLayout(spacing: 10, justifyContent: .center)
         provider.animator = MyAnimator()
         collectionView.provider = provider
+        collectionView.isPagingEnabled = true
     }
 
     @IBAction func addAction() {
