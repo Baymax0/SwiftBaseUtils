@@ -1200,7 +1200,7 @@
 			path = "7、属性修饰器";
 			sourceTree = "<group>";
 		};
-		2D0AD6FE2303CDE4004C5C90 /* VC */ = {
+		2D0AD6FE2303CDE4004C5C90 /* DemoVC */ = {
 			isa = PBXGroup;
 			children = (
 				2D4BD7272297A13D00E80275 /* ViewController.swift */,
@@ -1215,7 +1215,7 @@
 				10E7CDE826D66CB8008A7AA2 /* 7、属性修饰器 */,
 				2D328857234EFD2300BAFD37 /* 图片上传 */,
 			);
-			path = VC;
+			path = DemoVC;
 			sourceTree = "<group>";
 		};
 		2D328844234ED0F600BAFD37 /* 4、图片缩放预览 */ = {
@@ -1272,7 +1272,7 @@
 		2D4BD7242297A13D00E80275 /* BaseUtilsDemo */ = {
 			isa = PBXGroup;
 			children = (
-				2D0AD6FE2303CDE4004C5C90 /* VC */,
+				2D0AD6FE2303CDE4004C5C90 /* DemoVC */,
 				2D3F994722DDA9F7005B4F8D /* supports */,
 				2D4BD7252297A13D00E80275 /* AppDelegate.swift */,
 			);

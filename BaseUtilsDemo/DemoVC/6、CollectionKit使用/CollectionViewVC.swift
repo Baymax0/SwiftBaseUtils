@@ -14,7 +14,6 @@ class CollectionViewVC: BaseVC{
     var collectionView:CollectionView!
     var dataSource: ArrayDataSource<Int>!
     var viewSource: ClosureViewSource<Int,UILabel>!
-    
     var provider: BasicProvider<Int, UILabel>!
     
     var picker:BMSinglePicker!
