@@ -36,8 +36,6 @@ class BaseTableVC<T:HandyJSON>: BaseVC {
     var dataArr:[T] = []
     var param = Dictionary<String,Any>()
     
-    var indicatorView :BMIndicatorView!
-    
     var footNoDataText:String = ""
     
     // cell显示的时候是否显示加载动画

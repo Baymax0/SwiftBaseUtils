@@ -7,59 +7,43 @@
 
 import Foundation
 
-extension CGFloat{
-    func between(_ minValue:CGFloat,_ maxValue:CGFloat) -> CGFloat {
-        if self < minValue{
-            return minValue
-        } else if self > maxValue{
-            return maxValue
+//MARK: ------------ CGFloat ------------
+
+extension Comparable {
+    func between (_ minValue: Self, _ maxValue: Self) -> Self{
+        var minV = minValue
+        var maxV = maxValue
+        if minValue > maxValue{
+            minV = maxValue
+            maxV = minValue
+        }
+        if self < minV{
+            return minV
+        } else if self > maxV{
+            return maxV
         }
         return self
     }
 }
+
+
 extension Int{
-    func between(_ minValue:Int,_ maxValue:Int) -> Int {
-        if self < minValue{
-            return minValue
-        } else if self > maxValue{
-            return maxValue
-        }
-        return self
+    // 向下取整  4.1 返回 4
+    func divideWithFloor(_ d:Int) -> Int{
+        let divideValue = self / d
+        return divideValue
     }
+    
+    // 向上取整 4.1 返回 5
+    func divideWithCeiling(_ d:Int) -> Int{
+        var divideValue = self / d
+        if divideValue * d < self{
+            divideValue = divideValue + 1
+        }
+        return divideValue
+    }
+    
 }
-
-// 定义命名空间 方便找addConstraints 方法
-//public final class Baymax<Base> {
-//    public let base: Base
-//    public init(_ base: Base) {
-//        self.base = base
-//    }
-//}
-
-//extension Baymax where Base: UIView
-//
-//
-//
-//public protocol BMBetweenProtocol :Comparable {
-//    func getValueBetween(_ minValue:CGFloat,maxValue:CGFloat) -> CGFloat
-//}
-//
-//extension BMBetweenProtocol {
-//    func getValueBetween(_ minValue:CGFloat,maxValue:CGFloat) -> CGFloat {
-//        if self < minValue{
-//            return minValue
-//        } else if self > maxValue{
-//            return maxValue
-//        }
-//        return self
-//    }
-//}
-//
-//extension Int   :BMBetweenProtocol{}
-//extension Float :BMBetweenProtocol{}
-//extension Double:BMBetweenProtocol{}
-//extension String:BMBetweenProtocol{}
-
 
 
 

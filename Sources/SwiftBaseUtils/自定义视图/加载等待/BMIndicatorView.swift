@@ -95,7 +95,7 @@ class BMIndicatorView: UIView {
         
         requestBtn = UIButton(type: .system)
         requestBtn.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        requestBtn.setTitle("点击刷新", for: .normal)
+        requestBtn.setTitle("刷新数据", for: .normal)
         requestBtn.setTitleColor(.KTextLightGray, for: .normal)
         requestBtn.layer.cornerRadius = 10
         requestBtn.layer.borderWidth = 1

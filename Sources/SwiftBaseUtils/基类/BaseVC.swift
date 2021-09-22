@@ -47,13 +47,10 @@ class BaseVC: UIViewController {
     /// 当前页面 navi 背景色
     var barBGColor:UIColor! = BaseVC.global_navBarTintColor
     
-    
-    // MARK:  ----------- 功能View -----------
-
+    // MARK:  ----------- 功能View ----------
     var window:UIWindow! {
         return UIApplication.shared.windows.filter{$0.isKeyWindow}.first
     }
-    
     
     // MARK:  ----------- 变量存储 -----------
     /// viewwillappear 调用次数
@@ -61,7 +58,7 @@ class BaseVC: UIViewController {
     /// BaseVC.currentVC 或的当前展示的页面，判断用
     static var currentVC_Str:String?
     /// 当前的VC，全局可通过BaseVC.currentVC拿到，跳转用
-    static var currentVC:BaseVC?
+    weak static var currentVC:BaseVC?
     
     /// 页面离开的方式
     var dismissType:BMVCDismissType = .none
@@ -80,7 +77,8 @@ class BaseVC: UIViewController {
     /// 上次动画时间，用于cell列表刷新等 有先后顺序的动画
     var lastCellDisplayTimeInterval: TimeInterval = Date.timeIntervalSinceReferenceDate
     
-    
+    // MARK:  ----------- 加载动画 -----------
+    var indicatorView :BMIndicatorView!
     
     //MARK: ----------- vc生命周期 -----------
     override func viewDidLoad() {

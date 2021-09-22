@@ -27,6 +27,14 @@ extension Array{
         }
         return nil
     }
+    
+    // 遍历
+    public func traversal(_ transform: (Element,Int) -> ()){
+        for index in 0..<self.count{
+            let item = self[index]
+            transform(item,index)
+        }
+    }
 
 }
 

@@ -14,9 +14,7 @@ class BaseCollVC: BaseVC {
     var PageSize = KPageSize
     var dataArr:Array<Any>! = []
     var param = Dictionary<String,Any>()
-    
-    var indicatorView :BMIndicatorView!
-    
+        
     var footNoDataText:String = ""
     
     // cell显示的时候是否显示加载动画
