@@ -8,19 +8,6 @@
 
 
 
-
-
-// MARK: -  ----------------------  ------------------------
-extension Optional where Wrapped == String{
-    /// if nil or "" return false
-    var notEmpty: Bool {
-        if self == nil{
-            return false
-        }
-        return !self!.isEmpty
-    }
-}
-
 // MARK: -  ---------------------- 文字宽高 ------------------------
 extension String{
     func stringWidth(_ fontSize:CGFloat) -> CGFloat{
@@ -48,10 +35,6 @@ extension String{
 
 // MARK: -  ---------------------- 文字判断处理 ------------------------
 extension String{
-    /// if nil or "" return false
-    var notEmpty: Bool {
-        return !self.isEmpty
-    }
     
     /// 用于textviewDelegate里 获得输入后的问字
     mutating func replace(nsRange:NSRange,text:String){

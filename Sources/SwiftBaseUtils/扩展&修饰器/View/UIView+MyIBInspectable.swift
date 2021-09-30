@@ -70,6 +70,7 @@ extension UIView{
     
     func showWithAnimation(_ time:Double = 0.2){
         self.alpha = 0
+        self.isHidden = false
         UIView.animate(withDuration: time) {
             self.alpha = 1
         }
@@ -77,6 +78,7 @@ extension UIView{
     
     func showWithAnimation(delay:Double, _ time:Double = 0.2){
         self.alpha = 0
+        self.isHidden = false
         UIView.animate(withDuration: time, delay: delay,animations: {
             self.alpha = 1
         }) { (_) in

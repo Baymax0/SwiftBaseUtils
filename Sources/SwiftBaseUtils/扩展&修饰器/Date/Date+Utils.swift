@@ -7,6 +7,31 @@
 //
 
 
+enum My_TimeEnum {
+    case week(Int)
+    case day(Int)
+    case hour(Int)
+    case minute(Int)
+    case secend_Int(Int)
+    case secend_Intervsl(TimeInterval)
+
+    func getTimeInterval() -> TimeInterval{
+        switch self {
+        case .week(let num):
+            return TimeInterval(num * 7 * 24 * 60 * 60)
+        case .day(let num):
+            return TimeInterval(num * 24 * 60 * 60)
+        case .hour(let num):
+            return TimeInterval(num * 60 * 60)
+        case .minute(let num):
+            return TimeInterval(num * 60)
+        case .secend_Int(let num):
+            return TimeInterval(num)
+        case .secend_Intervsl(let num):
+            return num
+        }
+    }
+}
 
 extension Optional where Wrapped == Date{
     public var isToday: Bool{
@@ -86,8 +111,8 @@ extension Date {
         return date
     }
     
-    func addTime(_ time:TimeInterval) -> Date {
-        let t = self.timeIntervalSince1970 + time
+    func addTime(_ time:My_TimeEnum) -> Date {
+        let t = self.timeIntervalSince1970 + time.getTimeInterval()
         return Date.init(timeIntervalSince1970: t)
     }
     ///返回星期几

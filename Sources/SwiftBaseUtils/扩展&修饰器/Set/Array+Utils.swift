@@ -7,7 +7,6 @@
 //
 
 
-
 extension Array{
     
     // 防止越界崩溃
@@ -36,5 +35,17 @@ extension Array{
         }
     }
 
+}
+
+extension Optional {
+    var notEmpty: Bool {
+        guard self != nil else { return false }
+        if let arr = self as? Array<Any>{
+            if arr.count == 0 {
+                return false
+            }
+        }
+        return true
+    }
 }
 

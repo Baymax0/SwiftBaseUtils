@@ -23,13 +23,17 @@ class Utils: NSObject {
         return result
     }()
     
+    static let buildString:String = {
+        let result = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+        return result
+    }()
+    
     //返回随机UUID
     static var randomUUID:String{
         var uuid = String(CFUUIDCreateString(nil, CFUUIDCreate(nil)))
         uuid = uuid.replacingOccurrences(of: "-", with: "")
         return uuid
     }
-    
     
     static let appCurVersionInt:Int = {
         let ver = Utils.appCurVersion

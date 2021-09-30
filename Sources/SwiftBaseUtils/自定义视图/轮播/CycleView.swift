@@ -18,115 +18,83 @@ protocol CycleViewDelegate : class {
     func cycleViewDidSelectedItemAtIndex(_ index : NSInteger) -> ()
 }
 
+
 class CycleView: UIView,UICollectionViewDelegate, UICollectionViewDataSource {
     
-    //代理
-    weak var delegate : CycleViewDelegate?
+    //MARK: ------------ Required ------------
+    public var imageURLStringArr : [String]! = []// 设置图片
+    public weak var delegate : CycleViewDelegate? // 代理 点击事件
     
-    var mode : contentMode? = .scaleAspectFill
+    
+    //MARK: ------------ 样式设置 ------------
+    public var mode         : contentMode?  = .scaleAspectFill// 图片显示的mode
+    public var contentInset : UIEdgeInsets  = .zero
+    public var showPageControl  : Bool = false
+    public var currentPageColor : UIColor? { didSet{ pageControl.currentPageIndicatorTintColor = currentPageColor } }
+    public var pageColor        : UIColor? { didSet{ pageControl.pageIndicatorTintColor        = pageColor } }
+    public var moveTimeinterval  : Int = 4 // 轮播时间间隔
+    public var imageCornerRedius : Int = 0 //
 
-    var contentInset : UIEdgeInsets = .zero
+    public func reloadView(){
+        guard imageURLStringArr.count != 0 else {
+            collectionView.isHidden = true
+            return
+        }
+        collectionView.isHidden = false
+        
+        if showPageControl == false{
+            pageControl.isHidden = true
+        }else{
+            pageControl.isHidden = imageURLStringArr.count == 1
+            pageControl.numberOfPages = (imageURLStringArr?.count)!
+        }
 
-    //CollectionView复用cell的机制,不管当前的section有道少了item,当cell的宽和屏幕的宽一致是,当前屏幕最多显示两个cell(图片切换时是两个cell),切换完成时有且仅有一个cell,即使放大1000倍,内存中最多加载两个cell,所以不会造成内存暴涨现象
-    let KCount = 100
-    
-    //MARK: 获取图片URL数组
-    var imageURLStringArr : [String]! {
-        didSet{
-            if imageURLStringArr.count == 0{
-                collectionView.isHidden = true
-            }else{
-                collectionView.isHidden = false
-                
-                if imageURLStringArr.count == 1{
-                    pageControl.isHidden = true
-                }else{
-                    pageControl.isHidden = false
-                    pageControl.numberOfPages = (imageURLStringArr?.count)!
-                }
-                collectionView.reloadData()
-                if imageURLStringArr!.count <= 1{
-                    collectionView.isScrollEnabled = false
-                }else{
-                    //滚动到中间位置
-                    let indexPath : IndexPath = IndexPath(item: (imageURLStringArr?.count)! * KCount, section: 0)
-                    collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
-                    collectionView.isScrollEnabled = true
-                }
-            }
-            
+        collectionView.reloadData()
+        collectionView.isScrollEnabled = imageURLStringArr!.count > 1
+        
+        //滚动到中间位置
+        if imageURLStringArr!.count > 1{
+            let indexPath : IndexPath = IndexPath(item: (imageURLStringArr?.count)! * KCount, section: 0)
+            collectionView.scrollToItem(at: indexPath, at: .left, animated: true)
         }
     }
     
-    //MARK: 设置pageControl的颜色
-    var pageColor : UIColor? {
-        didSet{
-            pageControl.pageIndicatorTintColor = pageColor
-        }
+    public func stop(){
+        self.timer.invalidate()
+        self.timer = nil
     }
-    var currentPageColor : UIColor? {
-        didSet{
-            pageControl.currentPageIndicatorTintColor = currentPageColor
-        }
-    }
+    
+    
+    //MARK: ------------ init ------------
+    fileprivate let KCount = 100
+    fileprivate var collectionView : UICollectionView!
+    fileprivate var pageControl    : UIPageControl!
+    fileprivate var timer        : Timer!
+    fileprivate var timeCounting : Int = 0
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpUI()
+        initUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    //MARK: 懒加载子控件
-    //collectionView
-    lazy var collectionView : UICollectionView = {
-        let layout : CellFlowLayout = CellFlowLayout()
-        let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        collectionView.bounces = false
-        collectionView.backgroundColor = .clear
-        collectionView.isPagingEnabled = true
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.dataSource = self as UICollectionViewDataSource
-        collectionView.delegate = self as UICollectionViewDelegate
-        collectionView.register(CycleCell.self, forCellWithReuseIdentifier: "cell")
-        return collectionView
-    }()
-    //指示器
-    lazy var pageControl : UIPageControl = {
-        let width : CGFloat = 120
-        let height : CGFloat = 20
-        let pointX : CGFloat = (UIScreen.main.bounds.size.width - width) * 0.5
-        let pointY : CGFloat = bounds.size.height - height
-        let pageControl = UIPageControl(frame: CGRect(x: pointX, y: pointY, width: width, height: height))
-        pageControl.isUserInteractionEnabled = false
-        pageControl.pageIndicatorTintColor = UIColor.lightText
-        pageControl.currentPageIndicatorTintColor = UIColor.white
-        return pageControl
-    }()
-    //定时器
-    lazy var timer : Timer = {
-        let timer = Timer(timeInterval: 4.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
-        return timer
-    }()
+    required init?(coder aDecoder: NSCoder) { fatalError("init(coder:) has not been implemented") }
 }
 
 //MARK: 轮播逻辑处理
 extension CycleView {
     //MARK: 更新定时器 获取当前位置,滚动到下一位置
     @objc func updateTimer() -> Void {
+        // 单图不轮播
+        guard imageURLStringArr != nil && imageURLStringArr!.count > 1 else { return }
+        // 为0 不轮播
+        guard moveTimeinterval != 0 else { return }
         
-        if self.imageURLStringArr?.count == 1{
-            return
-        }
-        
+        // 秒数记述为0时触发轮播
+        timeCounting = (timeCounting + 1) % moveTimeinterval
+        guard timeCounting == 0 else { return }
+
         let indexPath = collectionView.indexPathsForVisibleItems.last
-        guard indexPath != nil else {
-            return
-        }
+        guard indexPath != nil else { return }
         let nextPath = IndexPath(item: (indexPath?.item)! + 1, section: (indexPath?.section)!)
         collectionView.scrollToItem(at: nextPath, at: .left, animated: true)
     }
@@ -193,23 +161,44 @@ extension CycleView {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : CycleCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CycleCell
         cell.mode = mode
-        if imageURLStringArr?.count == 0{
-        }else{
+        if imageURLStringArr!.count > 0{
             cell.imageURLString = imageURLStringArr?[indexPath.item % (imageURLStringArr?.count)!] ?? ""
         }
-        cell.imageView.cornerRadius = self.layer.cornerRadius
         cell.imageView.bm.addConstraints([.top(self.contentInset.top), .left(self.contentInset.left), .right(self.contentInset.right), .bottom(self.contentInset.bottom)])
+        cell.imageView.cornerRadius = CGFloat(self.imageCornerRedius)
         return cell
     }
 }
 
 //MARK: 设置UI--轮播界面,指示器,定时器
 extension CycleView {
-    fileprivate func setUpUI() {
+    fileprivate func initUI() {
+        
+        let layout : CellFlowLayout = CellFlowLayout()
+        collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+        collectionView.bounces = false
+        collectionView.backgroundColor = .clear
+        collectionView.isPagingEnabled = true
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.dataSource = self as UICollectionViewDataSource
+        collectionView.delegate = self as UICollectionViewDelegate
+        collectionView.register(CycleCell.self, forCellWithReuseIdentifier: "cell")
         addSubview(collectionView)
+        
+        let width : CGFloat = 120
+        let height : CGFloat = 20
+        let pointX : CGFloat = (self.w - width) * 0.5
+        let pointY : CGFloat = bounds.size.height - height
+        pageControl = UIPageControl(frame: CGRect(x: pointX, y: pointY, width: width, height: height))
+        pageControl.isUserInteractionEnabled = false
+        pageControl.pageIndicatorTintColor = UIColor.lightText
+        pageControl.currentPageIndicatorTintColor = UIColor.white
         addSubview(pageControl)
-        //启动定时器
-        timer.fireDate = Date(timeIntervalSinceNow: 2.0)
+        
+        timer = Timer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
+        timer.fireDate = Date(timeIntervalSinceNow: 1.0)
     }
 }
 

@@ -10,6 +10,9 @@
 
 class CycleCell: UICollectionViewCell {
     
+    var times:Dictionary<String,Int> = [:]
+    
+    
     var mode : contentMode? {
         didSet{
             switch mode ?? .scaleAspectFill {
@@ -25,8 +28,12 @@ class CycleCell: UICollectionViewCell {
     var imageURLString : String? {
         didSet{
             if (imageURLString?.hasPrefix("http"))! {
-                //网络图片:使用SDWebImage下载即可
-                imageView.kf.setImage(with: imageURLString.resource, placeholder: #colorLiteral(red: 0.9333333333, green: 0.9333333333, blue: 0.9333333333, alpha: 1).image, options: [.transition(.fade(0.45))])
+                if times[imageURLString!] == nil{
+                    times[imageURLString!] = 1
+                    imageView.kf.setImage(with: imageURLString.resource, options: [.transition(.fade(0.3)), .forceTransition])
+                }else{
+                    imageView.kf.setImage(with: imageURLString.resource)
+                }
             } else {
                 //本地图片
                 imageView.image = UIImage(named: imageURLString!)
