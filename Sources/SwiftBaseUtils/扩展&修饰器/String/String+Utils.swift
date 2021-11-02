@@ -7,6 +7,14 @@
 //
 
 
+extension String{
+    var notEmpty: Bool {
+        if self.count == 0 {
+            return false
+        }
+        return true
+    }
+}
 
 // MARK: -  ---------------------- 文字宽高 ------------------------
 extension String{

@@ -14,7 +14,7 @@ enum contentMode {
     case scaleAspectFit
 }
 
-protocol CycleViewDelegate : class {
+protocol CycleViewDelegate : AnyObject {
     func cycleViewDidSelectedItemAtIndex(_ index : NSInteger) -> ()
 }
 

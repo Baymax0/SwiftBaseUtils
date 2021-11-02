@@ -44,7 +44,7 @@ extension Optional where Wrapped == Date{
 }
 
 extension Date {
-    func toString(_ dateFormat:String="yyyy-MM-dd HH:mm") -> String {
+    func toString(_ dateFormat:String="yyyy-MM-dd HH:mm:ss") -> String {
         let timeZone = TimeZone(identifier: "Asia/Shanghai")
         let formatter = DateFormatter()
         formatter.timeZone = timeZone
@@ -115,6 +115,7 @@ extension Date {
         let t = self.timeIntervalSince1970 + time.getTimeInterval()
         return Date.init(timeIntervalSince1970: t)
     }
+    
     ///返回星期几
     func getweekDayString() ->String{
         let comps = self.weekend
@@ -136,6 +137,7 @@ extension Date {
         }
         return str
     }
+    
     ///返回第几周
     func getWeek() -> Int{
         guard let calendar = NSCalendar(identifier: NSCalendar.Identifier.gregorian) else {

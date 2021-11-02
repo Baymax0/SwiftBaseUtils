@@ -49,12 +49,13 @@ struct BMAlertView {
         alert.present()
     }
     
-    static func showInputAlert(title: String?, message: String?, handle: @escaping (() -> ())){
+    static func showInputAlert(title: String?, message: String?, handle: @escaping ((String?) -> ())){
         let alert = AlertController(title: title, message: message)
         alert.addTextField()
         alert.addAction(AlertAction(title: "取消", style: .preferred))
         alert.addAction(AlertAction(title: "确定", style: .normal, handler: { (action) in
-            handle()
+            let str = alert.textFields?.last?.text
+            handle(str)
         }))
         
         alert.present()

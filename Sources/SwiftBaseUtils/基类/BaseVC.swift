@@ -117,7 +117,11 @@ class BaseVC: UIViewController {
         if let b = self.hideNavBottonLine, b == true{
             self.findHairlineImageViewUnder(sView: self.navigationController?.navigationBar)?.isHidden = true
         }
+        self.reloadVC()
     }
+    
+    // viewwillAppear时调用
+    func reloadVC(){}
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

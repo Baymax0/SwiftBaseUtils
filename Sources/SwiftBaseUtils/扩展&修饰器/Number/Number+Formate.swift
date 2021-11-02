@@ -79,7 +79,7 @@ extension Double : BMNumberFormate{
         
         for t in formates{
             if t == .float_0{
-                result = String(format: "%0.0f", fl)
+                result = String(format: "%d", Int(fl))
             }
             if t == .float_1{
                 result = String(format: "%0.1f", fl)
@@ -110,11 +110,15 @@ extension Double : BMNumberFormate{
             }
             if t == .comma{
                 // 根据整数位的长度 加 ","
-                let length = String(format: "%0.0f", fl).count
+                let intValue = String(format: "%d", Int(fl))
+                let length = intValue.count
                 var index = 3
                 while length > index {
-                    result.insert(",", at: result.index(result.startIndex, offsetBy: (result.count-index)))
-                    index = index + 4
+                    assert(index < result.count, "index 越界")
+                    if index < result.count{
+                        result.insert(",", at: result.index(result.startIndex, offsetBy: (result.count-index)))
+                        index = index + 4
+                    }
                 }
             }
         }

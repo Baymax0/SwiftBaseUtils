@@ -34,12 +34,28 @@ extension Array{
             transform(item,index)
         }
     }
+    
+    func reverseEnumerated() -> [(Int,Element)]{
+        var result:[(Int,Element)] = []
+        let count = self.count
+        for (index,e) in self.enumerated().reversed(){
+            let v = (count - index - 1, e)
+            result.append(v)
+        }
+        return result
+    }
 
 }
 
 extension Optional {
     var notEmpty: Bool {
         guard self != nil else { return false }
+        if let str = self as? String{
+            if str.count == 0 {
+                return false
+            }
+        }
+        
         if let arr = self as? Array<Any>{
             if arr.count == 0 {
                 return false
