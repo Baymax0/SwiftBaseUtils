@@ -15,7 +15,27 @@ class Hud: NSObject {
     static var hud :MBProgressHUD!
     /// 自动隐藏时间
     static var dismissTime = 1.5
+    
+    private static func showHudInView(view:UIView! = UIApplication.shared.windows.filter({$0.isKeyWindow}).first!) {
+        if view == nil{
+            return
+        }
+        if hud != nil{
+            hide()
+            hud.removeFromSuperview()
+        }
+        hud = MBProgressHUD(view: view)
+        hud.removeFromSuperViewOnHide = true
+        view!.addSubview(Hud.hud)
+        hud.show(false)
+        hud.isOpaque = false
+        hud.opacity = 0.8
+    }
+}
 
+
+
+extension Hud{
     /// 显示文字
     static func showText(_ text:String?,in view:UIView! = UIApplication.shared.windows.filter({$0.isKeyWindow}).first!){
         if text == nil || text?.count == 0{
@@ -100,20 +120,5 @@ class Hud: NSObject {
             block()
         }
     }
-    
-    private static func showHudInView(view:UIView! = UIApplication.shared.windows.filter({$0.isKeyWindow}).first!) {
-        if view == nil{
-            return
-        }
-        if hud != nil{
-            hide()
-            hud.removeFromSuperview()
-        }
-        hud = MBProgressHUD(view: view)
-        hud.removeFromSuperViewOnHide = true
-        view!.addSubview(Hud.hud)
-        hud.show(false)
-        hud.isOpaque = false
-        hud.opacity = 0.8
-    }
 }
+

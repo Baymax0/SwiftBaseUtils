@@ -128,8 +128,8 @@ class BaseVC: UIViewController {
         if let b = self.hideNavBottonLine, b == true{
             self.findHairlineImageViewUnder(sView: self.navigationController?.navigationBar)?.isHidden = false
         }
+        hideMaskView()
     }
-    
     
     //MARK: ----------- Action -----------
     

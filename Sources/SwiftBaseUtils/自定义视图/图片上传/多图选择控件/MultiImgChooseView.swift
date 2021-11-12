@@ -241,7 +241,7 @@ class MultiImgChooseView: UIView {
     }
 
     // 将新的图片加到显示中
-    private func addImg(_ img:UIImage) {
+    func addImg(_ img:UIImage) {
         if self.imgBtnArray.count < self.maxNum{
             let btn = self.createBtn()
             btn.alpha = 0
