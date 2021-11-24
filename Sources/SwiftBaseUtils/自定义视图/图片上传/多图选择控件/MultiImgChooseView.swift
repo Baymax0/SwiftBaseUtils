@@ -271,6 +271,7 @@ class MultiImgChooseView: UIView {
                 vc.setNewImg(itemView: btn!)
             }
         }
+        updatePosition()
     }
 
     private func createBtn() -> BMImgItems {

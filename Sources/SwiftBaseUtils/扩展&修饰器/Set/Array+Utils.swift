@@ -39,7 +39,7 @@ extension Array{
         var result:[(Int,Element)] = []
         let count = self.count
         for (index,e) in self.enumerated().reversed(){
-            let v = (count - index - 1, e)
+            let v = (index, e)
             result.append(v)
         }
         return result
