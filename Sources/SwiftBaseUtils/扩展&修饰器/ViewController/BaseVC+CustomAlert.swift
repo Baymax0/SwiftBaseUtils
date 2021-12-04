@@ -190,8 +190,7 @@ extension BaseVC {
             content?.transform = CGAffineTransform.identity
             self.alertContentBtn.removeFromSuperview()
         }
-        NotificationCenter.default.removeObserver(self)
-        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         self.closeKeyboard()
     }
 }

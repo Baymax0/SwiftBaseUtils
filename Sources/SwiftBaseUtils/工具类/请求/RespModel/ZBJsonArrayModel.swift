@@ -60,9 +60,11 @@ public class BMRequester_ModelList<T:HandyJSON> : BMRequester{
             }
             
             if mod != nil{
-                bm_print("code:\(mod!.code ?? -99)")
-                bm_print("msg:\(mod!.msg ?? "")")
-                bm_print("data:\(String(describing: jsonStr!)))")
+                if BMRequester.printRequestInfo == true{
+                    bm_print("code:\(mod!.code ?? -99)")
+                    bm_print("msg:\(mod!.msg ?? "")")
+                    bm_print("data:\(String(describing: jsonStr!)))")
+                }
                 self.handelResponce(code: mod?.code)
                 finish(mod)
             }else{

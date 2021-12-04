@@ -20,10 +20,21 @@ extension BaseVC {
     func pushViewController(_ vc:UIViewController, _ animation:Bool = true) {
         self.dismissType = .push
         if let n = self.navigationController{
+            if let baseVC = vc as? BaseVC{
+                BaseVC.currentVC = baseVC
+            }
             n.pushViewController(vc, animated: animation)
         }else{
             self.present(vc, animated: animation, completion: nil)
         }
+    }
+    
+    func presentViewController(_ vc:UIViewController){
+        self.dismissType = .push
+        if let baseVC = vc as? BaseVC{
+            BaseVC.currentVC = baseVC
+        }
+        self.present(vc, animated: true, completion: nil)
     }
     
     func pushViewControllerWithHero(_ vc:BaseVC) {

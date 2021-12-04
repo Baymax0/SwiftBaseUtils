@@ -46,6 +46,9 @@ enum RequestError : Int{
 // MARK: -  ---------------------- 基础请求类 ------------------------
 public class BMRequester{
     
+    /// 是否打印信息
+    static var printRequestInfo = false
+    
     static var sessionManager: Alamofire.SessionManager = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 10
@@ -100,7 +103,9 @@ public class BMRequester{
                             if resp.code == 1{
                                 let data = resp.data
                                 if let url = data?["url"] as? String{
-                                    bm_print(url)
+                                    if BMRequester.printRequestInfo == false{
+                                        bm_print("上传结束：",url)
+                                    }
                                     finish(url)
                                 }else{
                                     finish(nil)
@@ -131,6 +136,9 @@ public class BMRequester{
     
     // 打印接口响应
     private func printResponce(_ url:String, _ params:[String:Any]){
+        if BMRequester.printRequestInfo == false{
+            return
+        }
         var allUrl = url
         if params.keys.count != 0{
             var count = 0

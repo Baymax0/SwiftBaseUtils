@@ -17,25 +17,22 @@ class WebVC: BaseVC{
     
     var barItemColor:UIColor?
 
-    var webView:WKWebView!
-
+    var webView:WKWebView = WKWebView( frame: CGRect(x:0, y:0, width:KScreenWidth, height:KHeightInNav))
+    
+    var showNaviBar:Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideNav = false
-        
+        self.hideNav = true
         let url = URL(string: urlString!)
         webView.load(URLRequest(url: url!))
     }
     
     override func initUI() {
-        webView = WKWebView( frame: CGRect(x:0, y:0, width:KScreenWidth, height:KHeightInNav))
         webView.backgroundColor = .KBGGray
         self.view.addSubview(webView)
         
-        let naviView = UIView(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: KNaviBarH))
-        naviView.backgroundColor = .white
-        
-        if self.navigationController == nil{
+        if showNaviBar {
             let naviView = UIView(frame: CGRect(x: 0, y: 0, width: KScreenWidth, height: KNaviBarH))
             let lab = UILabel(frame: CGRect(x: 0, y: KNaviBarH-44, width: KScreenWidth, height: 44))
             lab.text = self.title
@@ -44,16 +41,19 @@ class WebVC: BaseVC{
             naviView.addSubview(lab)
             
             let back = UIButton(frame: CGRect(x: 10, y: KNaviBarH-44, width: 50, height: 44))
-            back.setImage(UIImage(named: "BMback_Icon"), for: .normal)
+            let img = UIImage(named: "BMback_Icon")?.withRenderingMode(.alwaysTemplate)
+            back.setImage(img, for: .normal)
             back.tag = 0
+            back.tintColor = .black
             back.addTarget(self, action: #selector(WebVC.back), for: .touchUpInside)
             
             naviView.addSubview(back)
             naviView.backgroundColor = .white
             
             webView.y = KNaviBarH
-            
             self.view.addSubview(naviView)
+        }else{
+            
         }
     }
 
@@ -62,7 +62,6 @@ class WebVC: BaseVC{
             super.back()
         }else{
             let count = webView.backForwardList.backList.count
-            bm_print(count)
             if count >= 1{
                 webView.goBack()
             }else{

@@ -110,16 +110,26 @@ extension Double : BMNumberFormate{
             }
             if t == .comma{
                 // 根据整数位的长度 加 ","
-                let intValue = String(format: "%d", Int(fl))
-                let length = intValue.count
+                // 如果包含小数点先剔除小数点
+                var temp = result
+                var others = ""
+                if result.contains(".") {
+                    let arr = result.components(separatedBy: ".")
+                    temp = arr.bm_object(0) ?? ""
+                    others = arr.bm_object(1) ?? ""
+                    others = "." + others
+                }
+                
+                let length = temp.count
                 var index = 3
                 while length > index {
-                    assert(index < result.count, "index 越界")
-                    if index < result.count{
-                        result.insert(",", at: result.index(result.startIndex, offsetBy: (result.count-index)))
+                    assert(index < temp.count, "index 越界")
+                    if index < temp.count{
+                        temp.insert(",", at: temp.index(temp.startIndex, offsetBy: (temp.count-index)))
                         index = index + 4
                     }
                 }
+                result = temp + others
             }
         }
         result = result + suffix

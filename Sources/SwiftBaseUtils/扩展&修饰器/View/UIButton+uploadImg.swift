@@ -6,6 +6,8 @@
 //  Copyright © 2018 zhuanbangTec. All rights reserved.
 //
 
+import UIKit
+
 
 let progressTag = 98362
 
@@ -97,7 +99,7 @@ extension UIButton{
     }
 
     // 显示等待 加载器
-    func showIndicator() -> Void {
+    func showIndicator(_ color:UIColor = .white, _ width:CGFloat = 30) -> Void {
         self.isUserInteractionEnabled = false
         let lab = UILabel()
         lab.text = self.titleLabel?.text
@@ -111,10 +113,10 @@ extension UIButton{
         let activityIndicatorView = NVActivityIndicatorView(frame: .zero,
                                                         type: NVActivityIndicatorType.circleStrokeSpin)
         activityIndicatorView.tag = 93339
-        activityIndicatorView.color = .white
+        activityIndicatorView.color = color
         activityIndicatorView.startAnimating()
         self.addSubview(activityIndicatorView)
-        activityIndicatorView.bm.addConstraints([.center, .w(30), .h(30)])
+        activityIndicatorView.bm.addConstraints([.center, .w(width), .h(width)])
     }
 
     // 显示等待 加载器

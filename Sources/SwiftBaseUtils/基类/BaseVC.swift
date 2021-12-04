@@ -58,7 +58,11 @@ class BaseVC: UIViewController {
     /// BaseVC.currentVC 或的当前展示的页面，判断用
     static var currentVC_Str:String?
     /// 当前的VC，全局可通过BaseVC.currentVC拿到，跳转用
-    weak static var currentVC:BaseVC?
+    weak static var currentVC:BaseVC?{
+        didSet{
+            BaseVC.currentVC_Str = String(describing: currentVC!.classForCoder)
+        }
+    }
     
     /// 页面离开的方式
     var dismissType:BMVCDismissType = .none
@@ -98,7 +102,6 @@ class BaseVC: UIViewController {
         // 这里设置backgroundColor 会导致子类的xib中设置的背景色失效
 //        self.view.backgroundColor = .white
         appearTimes = appearTimes + 1
-        BaseVC.currentVC_Str = String(describing: self.classForCoder)
         BaseVC.currentVC = self
         
         navigationController?.setNavigationBarHidden(hideNav, animated: true)

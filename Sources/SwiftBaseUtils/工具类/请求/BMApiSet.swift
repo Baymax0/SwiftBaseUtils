@@ -25,7 +25,6 @@ import Foundation
 ///     network[.login].request(params: nil) { (resp) in
 ///         if resp?.code == 1{
 ///             let model = resp?.data
-///             print("\(model)")
 ///         }
 ///      }
 ///     再也不用在调方法的时候传 Model.self 了

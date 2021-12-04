@@ -56,9 +56,11 @@ public class BMRequester_Model<T:HandyJSON>: BMRequester{
             }
             let mod = JSONDeserializer<ZBJsonModel<T>>.deserializeFrom(json: jsonStr)
             if mod != nil{
-                bm_print("code:\(mod!.code ?? -99)")
-                bm_print("msg:\(mod!.msg ?? "")")
-                bm_print("data:\(jsonStr ?? ""))")
+                if BMRequester.printRequestInfo == true{
+                    bm_print("code:\(mod!.code ?? -99)")
+                    bm_print("msg:\(mod!.msg ?? "")")
+                    bm_print("data:\(jsonStr ?? ""))")
+                }
                 self.handelResponce(code: mod?.code)
                 finish(mod)
             }else{

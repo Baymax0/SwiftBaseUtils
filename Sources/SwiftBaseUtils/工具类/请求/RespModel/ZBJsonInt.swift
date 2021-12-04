@@ -44,9 +44,11 @@ public class BMRequester_Int : BMRequester{
         return self.requestJson(url, method: api.method, params: withDefault) { (code,jsonStr) in
             let mod = JSONDeserializer<ZBJsonInt>.deserializeFrom(json: jsonStr)
             if mod != nil{
-                bm_print("code:\(mod!.code ?? -99)")
-                bm_print("msg:\(mod!.msg ?? "")")
-                bm_print("data:\(String(describing: jsonStr!)))")
+                if BMRequester.printRequestInfo == true{
+                    bm_print("code:\(mod!.code ?? -99)")
+                    bm_print("msg:\(mod!.msg ?? "")")
+                    bm_print("data:\(String(describing: jsonStr!)))")
+                }
                 self.handelResponce(code: mod?.code)
                 finish(mod)
             }else{
