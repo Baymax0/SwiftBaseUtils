@@ -50,8 +50,9 @@ struct BMAlertView {
     }
     
     static func showInputAlert(title: String?, message: String?, handle: @escaping ((String?) -> ())){
-        let alert = AlertController(title: title, message: message)
+        let alert = AlertController(title: title, message: nil)
         alert.addTextField()
+        alert.textFields?.first?.text = message
         alert.addAction(AlertAction(title: "取消", style: .preferred))
         alert.addAction(AlertAction(title: "确定", style: .normal, handler: { (action) in
             let str = alert.textFields?.last?.text

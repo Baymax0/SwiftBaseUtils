@@ -12,7 +12,8 @@ class BMPreviewView: UIView{
     
     var bgView:UIView!
     
-    var imgDatas:[String]!
+    var imgUrls:[String]!
+    var imgDatas:[UIImage]!
     var collectionView: UICollectionView!
     static let colItemSpacing: CGFloat = 40
     
@@ -31,11 +32,20 @@ class BMPreviewView: UIView{
     
     required init?(coder: NSCoder) { fatalError("init(coder:) has not been implemented") }
     
-    static func createWith(_ imgs:[String], index:Int) -> BMPreviewView{
+    static func createWith(_ imgsUrls:[String], index:Int) -> BMPreviewView{
         let window = UIApplication.shared.windows.filter{$0.isKeyWindow}.first
         let v = BMPreviewView(frame: window!.bounds)
-        v.imgDatas = imgs
+        v.imgUrls = imgsUrls
         v.setPage(index)
+        v.initUI()
+        return v
+    }
+    
+    static func createWith(_ imgDatas:[UIImage]) -> BMPreviewView{
+        let window = UIApplication.shared.windows.filter{$0.isKeyWindow}.first
+        let v = BMPreviewView(frame: window!.bounds)
+        v.imgDatas = imgDatas
+        v.setPage(0)
         v.initUI()
         return v
     }
@@ -80,9 +90,9 @@ class BMPreviewView: UIView{
     
     // 初始化页数
     func setPage(_ page:Int){
-        // page  [0..imgDatas.count]
+        let maxPages = max(imgUrls.count, imgDatas.count)
         var newPage = max(0,page)
-        newPage = min(0,imgDatas.count - 1)
+        newPage = min(0,maxPages - 1)
         guard currentPageIndex != newPage else { return }
 
         currentPageIndex = page
@@ -90,7 +100,7 @@ class BMPreviewView: UIView{
         frontX = centerX - (KScreenWidth + BMPreviewView.colItemSpacing) * 0.7
         nextX = centerX + (KScreenWidth + BMPreviewView.colItemSpacing) * 0.7
         
-        naviLab.text = String(format: "%d / %d", currentPageIndex + 1, imgDatas.count)
+        naviLab.text = String(format: "%d / %d", currentPageIndex + 1, maxPages)
     }
     
     func show(){
@@ -113,7 +123,7 @@ class BMPreviewView: UIView{
 
 extension BMPreviewView: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.imgDatas.count
+        return max(imgUrls.count, imgDatas.count)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -133,12 +143,17 @@ extension BMPreviewView: UICollectionViewDataSource, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let str = self.imgDatas[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BMImagePreviewCell", for: indexPath) as? BMImagePreviewCell
 
-        cell?.imageView.kf.setImage(with: str.resource,completionHandler: { (_) in
-            cell?.resetSubViewSize()
-        })
+        if self.imgUrls.count > 0{
+            let str = self.imgUrls[indexPath.row]
+            cell?.imageView.kf.setImage(with: str.resource,completionHandler: { (_) in
+                cell?.resetSubViewSize()
+            })
+        }else{
+            cell?.imageView.image = self.imgDatas[indexPath.row]
+        }
+        
         cell?.backgroundColor = .clear
         cell?.singleTapBlock = { [weak self] in
             self?.hide()

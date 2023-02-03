@@ -64,10 +64,6 @@ public class BMRequester{
     @discardableResult
     func requestJson(_ url:String, method:HTTPMethod, params:[String:Any], finish: @escaping (_ code:Int, _ resp:String?)->())  -> DataRequest{
         let dic = params
-//        if let session = cache[.sessionId]{
-//            dic["sessionId"] = session
-//            dic["userId"] = cache[.userId]
-//        }
         return BMRequester.sessionManager.request(url, method: method, parameters: dic).responseString { (response) in
             /// 打印请求接口
             self.printResponce(url, dic)

@@ -35,7 +35,7 @@ extension UIViewController{
         //多图时 使用asset 数组
         clImgTools.cl_setupImagePickerWith(MaxImagesCount: num, superVC: self) { (asset,cutImage) in
             var imageArr = [UIImage]()
-            CLImagePickerTool.convertAssetArrToOriginImage(assetArr: asset, scale: 0.1, successClouse: { (image, assetItem) in
+            CLImagePickerTool.convertAssetArrToOriginImage(assetArr: asset, scale: 1.0, successClouse: { (image, assetItem) in
                 imageArr.append(image)
                 if imageArr.count == asset.count {
                     complish(imageArr)

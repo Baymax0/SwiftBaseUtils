@@ -88,8 +88,6 @@ class ScanVC: BaseVC {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        //在viewDidLoad 初始化会造成卡顿
         startScaning()
     }
     
